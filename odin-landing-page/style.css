@@ -7,7 +7,6 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  /* flex-grow: 1; */
 }
 ul,
 li {
@@ -17,7 +16,7 @@ li {
 }
 
 /* ============================== */
-/* FIRST BLOCK  */
+/* FIRST BLOCK                    */
 /* ============================== */
 
 .first-block {
@@ -54,6 +53,7 @@ a {
 }
 
 /* ========================================= */
+/* ========================================= */
 
 .first-block-content {
   display: grid;
@@ -89,7 +89,7 @@ a {
 }
 
 /* ============================== */
-/* SECOND BLOCK  */
+/* SECOND BLOCK                   */
 /* ============================== */
 
 .second-block {
@@ -104,6 +104,7 @@ a {
   display: flex;
   justify-content: center;
   gap: 40px;
+  padding-bottom: 100px;
 }
 
 .second-block-onecard {
@@ -115,16 +116,83 @@ a {
   border-radius: 15px;
 }
 .second-block-onecard p {
+  margin-top: 5px;
 }
 
 /* ============================== */
-/* THIRD BLOCK  */
+/* THIRD BLOCK                    */
 /* ============================== */
 
-/* ============================== */
-/* FOURTH BLOCK  */
-/* ============================== */
+.third-block {
+  box-sizing: content-box;
+  background-color: #e5e7eb;
+  padding: 100px;
+  color: #1f2937;
+  /* margin: 0 auto; */
+}
+.third-block-blockquote {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.third-block-quote {
+  font-size: 36px;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.third-block-quote-author {
+  text-align: right;
+  padding-right: 100px;
+  font-weight: 600;
+  font-size: 18px;
+}
 
 /* ============================== */
-/* FOOTER BLOCK  */
+/* FOURTH BLOCK                   */
 /* ============================== */
+
+.fourth-block-box {
+  background-color: #3882f6;
+  color: #f9faf8;
+  width: 1000px;
+  padding: 50px 100px;
+  margin: 100px auto;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fourth-block-button {
+  background-color: #3882f6;
+  font-size: 18px;
+  font-weight: bold;
+  color: #f9faf8;
+  border: 2px solid #f9faf8;
+  border-radius: 7px;
+  padding: 8px 35px;
+  margin-block: 10px;
+}
+
+.fourth-block-text p:first-child {
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.fourth-block-text p:last-child {
+  margin: 0;
+}
+
+/* ============================== */
+/* FOOTER BLOCK                   */
+/* ============================== */
+footer {
+  background-color: #1f2937;
+  color: #e5e7eb;
+}
+
+footer p {
+  text-align: center;
+  margin-block: 40px;
+}
