@@ -9,40 +9,43 @@ function computerPlay() {
   }
 }
 
-function onePLay(playerSelection, computerSelection = "Rock") {
+function playRound(playerSelection, computerSelection = "Rock") {
   playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
-  // alert("Your string: " + playerSelection);
   if (playerSelection === computerSelection) {
-    alert("DRAW");
     return "DRAW";
   } else if (playerSelection === "Rock") {
     if (computerSelection === "Scissors") {
-      // console.log("You Won! Rock beats Scissors");
       return "You Won! Rock beats Scissors";
     } else {
-      // console.log("You Lose! Paper beats Rock");
       return "You Lose! Paper beats Rock";
     }
   } else if (playerSelection === "Paper") {
     if (computerSelection === "Rock") {
-      // console.log("You Won! Paper beats Rock");
       return "You Won! Paper beats Rock";
     } else {
-      // console.log("You Lose! Scissors beats Paper");
+      return "You Lose! Scissors beats Paper";
+    }
+  } else if (playerSelection === "Scissors") {
+    if (computerSelection === "Paper") {
+      return "You Won! Paper beats Rock";
+    } else {
       return "You Lose! Scissors beats Paper";
     }
   } else {
-    if (computerSelection === "Paper") {
-      // console.log("You Won! Paper beats Rock");
-      return "You Won! Paper beats Rock";
-    } else {
-      // console.log("You Lose! Scissors beats Paper");
-      return "You Lose! Scissors beats Paper";
-    }
+    return "Incorrect parameter!";
   }
 }
 
-let playerSelection = prompt("Enter to game: ");
-let computerSelection = computerPlay();
+// console.log(playRound(playerSelection, computerSelection));
 
-onePLay(playerSelection, computerSelection);
+function game() {
+  for (let i = 0; i < 5; i++) {
+    console.log(i);
+    let playerSelection = prompt("Enter to game: ");
+    let computerSelection = computerPlay();
+    console.log(playRound(playerSelection, computerSelection));
+    // alert(playRound(playerSelection, computerSelection));
+  }
+}
+
+game();
