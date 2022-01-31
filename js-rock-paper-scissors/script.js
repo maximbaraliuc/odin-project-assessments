@@ -51,8 +51,8 @@ function game() {
   if (parseInt(playerScore.textContent) < 5 && parseInt(computerScore.textContent) < 5) {
     playerScore.textContent = parseInt(playerScore.textContent) + resultRound[1];
     computerScore.textContent = parseInt(computerScore.textContent) + resultRound[2];
-    playerChoice.textContent = playerPlay;
-    computerChoice.textContent = computerPlay;
+    playerChoice.src = `images/svg/left-${playerPlay}.svg`;
+    computerChoice.src = `images/svg/right-${computerPlay.toLowerCase()}.svg`;
     feedback.textContent = `${resultRound[0]}`;
     // alert(`${resultRound[0]} | Round ${playCount} is finished.`);
   } else {
