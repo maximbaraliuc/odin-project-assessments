@@ -5,8 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
+    <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> -->
+    <link rel="shortcut icon" type="image/png" href="favicon.png" />
+
     <title>Rock Paper Scissors</title>
   </head>
-  <body></body>
+  <body>
+    <h1>Rock Paper Scissors</h1>
+    <!-- Displays current score and player's choice -->
+    <div class="player-card">
+      <span class="card-title">Player</span>
+      <div id="player-choice">?</div>
+    </div>
+    <div class="score-card">
+      <span class="card-title">Score</span>
+      <div class="display"><span id="player-point">0</span><span> : </span><span id="computer-point">0</span></div>
+    </div>
+    <div class="player-card">
+      <span class="card-title">Computer</span>
+      <div id="computer-choice">?</div>
+    </div>
+    <!-- Displays one game's result -->
+    <div class="current-state"><span class="feedback">Waiting for players choice...</span></div>
+    <!-- Players choice block -->
+    <div class="player-options">
+      <h2></h2>
+      <!-- Not sure if is better to use ul>li -->
+      <!-- <img src="" alt="" /><img src="" alt="" /><img src="" alt="" /> -->
+      <button class="play-button" id="rock">Rock</button><button class="play-button" id="paper">Paper</button
+      ><button class="play-button" id="scissors">Scissors</button>
+    </div>
+
+    <button id="new-game">New Game</button>
+  </body>
 </html>
