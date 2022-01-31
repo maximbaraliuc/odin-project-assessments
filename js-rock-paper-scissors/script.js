@@ -10,12 +10,13 @@ function cPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
+  playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
   let roundWon = 0;
   let roundLost = 0;
   if (playerSelection === computerSelection) {
     roundWon = 1;
     roundLost = 1;
-    return ["DRAW", roundWon, roundLost];
+    return ["Draw", roundWon, roundLost];
   } else if (playerSelection === "Rock") {
     if (computerSelection === "Scissors") {
       roundWon = 1;
@@ -47,26 +48,24 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-  if (playCount <= 5) {
+  if (parseInt(playerScore.textContent) < 5 && parseInt(computerScore.textContent) < 5) {
     playerScore.textContent = parseInt(playerScore.textContent) + resultRound[1];
     computerScore.textContent = parseInt(computerScore.textContent) + resultRound[2];
     playerChoice.textContent = playerPlay;
     computerChoice.textContent = computerPlay;
     feedback.textContent = `${resultRound[0]}`;
     // alert(`${resultRound[0]} | Round ${playCount} is finished.`);
-  } else if (playCount > 6) {
-    return;
   } else {
     currentState.appendChild(document.createElement("span"));
     let endScore = document.querySelector(".current-state span:last-child");
     if (playerScore.textContent === computerScore.textContent) {
       endScore.textContent = "DRAW";
-    } else if (playerScore.textContent > computerScore.textContent) {
+    } else if (playerScore.textContent < computerScore.textContent) {
       endScore.textContent = "LOSER";
     } else {
       endScore.textContent = "WINNER";
     }
-
+    playedButtons.forEach((button) => (button.disabled = true));
     alert("Game is finished. Start a new game.");
   }
 }
@@ -81,8 +80,10 @@ let playCount = 0;
 let playerScore = document.querySelector("#player-point");
 let computerScore = document.querySelector("#computer-point");
 
-let playerChoice = document.querySelector("#player-choice");
-let computerChoice = document.querySelector("#computer-choice");
+let playerChoice = document.querySelector("#player-choice img");
+console.log(playerChoice);
+let computerChoice = document.querySelector("#computer-choice img");
+console.log(playerChoice);
 
 let feedback = document.querySelector(".feedback");
 let currentState = document.querySelector(".current-state");
@@ -94,9 +95,10 @@ let playedButtons = document.querySelectorAll(".play-button");
 
 playedButtons.forEach((button) => {
   button.addEventListener("click", function (e) {
-    // console.log(e);
-    // console.log(e.target.firstChild.data);
-    playerPlay = `${e.target.firstChild.data}`;
+    // console.log(this.id);
+    // console.log(e.target.id);
+    playerPlay = `${this.id}`;
+    // playerPlay = playerPlay[0].toUpperCase() + playerPlay.slice(1).toLowerCase();
     playCount++;
     console.log(playCount);
     computerPlay = cPlay();
