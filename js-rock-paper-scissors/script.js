@@ -20,7 +20,7 @@ function playRound(playerSelection, computerSelection) {
   } else if (playerSelection === "Rock") {
     if (computerSelection === "Scissors") {
       roundWon = 1;
-      return ["You Won! Rock beats Scissors", roundWon, roundLost];
+      return ["You Win! Rock beats Scissors", roundWon, roundLost];
     } else {
       roundLost = 1;
       return ["You Lose! Paper beats Rock", roundWon, roundLost];
@@ -28,7 +28,7 @@ function playRound(playerSelection, computerSelection) {
   } else if (playerSelection === "Paper") {
     if (computerSelection === "Rock") {
       roundWon = 1;
-      return ["You Won! Paper beats Rock", roundWon, roundLost];
+      return ["You Win! Paper beats Rock", roundWon, roundLost];
     } else {
       roundLost = 1;
       return ["You Lose! Scissors beats Paper", roundWon, roundLost];
@@ -37,7 +37,7 @@ function playRound(playerSelection, computerSelection) {
     if (computerSelection === "Paper") {
       roundWon = 1;
 
-      return ["You Won! Paper beats Rock", roundWon, roundLost];
+      return ["You Win! Paper beats Rock", roundWon, roundLost];
     } else {
       roundLost = 1;
       return ["You Lose! Scissors beats Paper", roundWon, roundLost];
@@ -55,7 +55,8 @@ function game() {
     computerChoice.src = `images/svg/right-${computerPlay.toLowerCase()}.svg`;
     feedback.textContent = `${resultRound[0]}`;
     // alert(`${resultRound[0]} | Round ${playCount} is finished.`);
-  } else {
+  }
+  if (parseInt(playerScore.textContent) === 5 || parseInt(computerScore.textContent) === 5) {
     currentState.appendChild(document.createElement("span"));
     let endScore = document.querySelector(".current-state span:last-child");
     if (playerScore.textContent === computerScore.textContent) {
@@ -66,7 +67,7 @@ function game() {
       endScore.textContent = "WINNER";
     }
     playedButtons.forEach((button) => (button.disabled = true));
-    alert("Game is finished. Start a new game.");
+    // alert("The game has ended. Start a new game.");
   }
 }
 
