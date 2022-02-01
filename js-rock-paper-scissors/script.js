@@ -82,9 +82,9 @@ let playerScore = document.querySelector("#player-point");
 let computerScore = document.querySelector("#computer-point");
 
 let playerChoice = document.querySelector("#player-choice img");
-console.log(playerChoice);
+// console.log(playerChoice);
 let computerChoice = document.querySelector("#computer-choice img");
-console.log(playerChoice);
+// console.log(playerChoice);
 
 let feedback = document.querySelector(".feedback");
 let currentState = document.querySelector(".current-state");
