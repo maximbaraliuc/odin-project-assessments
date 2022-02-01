@@ -147,13 +147,13 @@ button img {
 }
 button:hover {
   cursor: pointer;
-  transform: translate(0px, -5px);
+  transform: translate(0px, -8px);
   /* filter: drop-shadow(10px 10px #2c2e42); */
 }
 
 button:active {
   transform: translate(0px, 0px);
-  filter: brightness(60%) drop-shadow(0px 3px #2c2e42);
+  filter: /* brightness(60%) */ drop-shadow(0px 3px #2c2e42);
 }
 #new-game {
   border-radius: 10px;
