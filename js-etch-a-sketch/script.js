@@ -12,10 +12,24 @@ let numberOfCells = 6;
 let setColorBlack = function () {
   this.style.backgroundColor = "black";
 };
-// Grey-Black incremental
-// Random color
+// Grey-Black incremental tones
+let setColorDarken = function () {};
 
-let generateCanvas = function (nCells, setColor) {
+// Random color
+let setColorRandom = function () {
+  let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+  this.style.backgroundColor = `#${randomColor}`;
+};
+
+let colorize = function (setColorX, allCells) {
+  // Event listener for each element in the container to change background color .
+  // Depends on an external function for setColor...
+  for (let elem of allCells) {
+    elem.addEventListener("mouseenter", setColorX);
+  }
+};
+
+let generateCanvas = function (nCells, setColorX) {
   // Create a cell with corresponding "width" properties.
   let oneCell = document.createElement("div");
   oneCell.style.width = `${500 / nCells}px`;
@@ -27,11 +41,7 @@ let generateCanvas = function (nCells, setColor) {
   }
   let allCells = document.querySelectorAll(".main-canvas div");
 
-  // Event listener for each element in the container to change background color .
-  // Depends on an external function for setColor...
-  for (let elem of allCells) {
-    elem.addEventListener("mouseenter", setColor);
-  }
+  colorize(setColorX, allCells);
 };
 
 generateCanvas(numberOfCells, setColorBlack);
@@ -44,7 +54,7 @@ let resetAndGenerate = function (nCells, setColor) {
   generateCanvas(nCells, setColor);
 };
 
-console.log(setColorBlack);
+// console.log(setColorBlack);
 // console.log(setColorBlack());
 
 // resetAndGenerate(4, setColorBlack);
