@@ -4,7 +4,7 @@
 let mainCanvas = document.querySelector(".main-canvas");
 
 // Variables for the canvas resolution
-let numberOfCells = 6;
+let numberOfCells = 4;
 
 // Color change functions
 // ======================
@@ -12,8 +12,30 @@ let numberOfCells = 6;
 let setColorBlack = function () {
   this.style.backgroundColor = "black";
 };
+
 // Grey-Black incremental tones
-let setColorDarken = function () {};
+// NOT SURE IF IT works only when the sta-tar color is rgb(250, 250, 250,)????
+let setColorDarken = function () {
+  let getColor = this.style.backgroundColor;
+  // Get all RGB values as an array and change each value,decrement zero.
+  // String, to an Array, map to numbers
+  let rgb = getColor.slice(4, -1).split(", ").map(Number);
+  let rgbFinalString = "rgb(";
+
+  for (let rgbValue of rgb) {
+    // console.log(rgbValue);
+    // console.log(typeof rgbValue);
+    if (rgbValue > 25) {
+      rgbValue -= 25;
+    } else {
+      rgbValue = 0;
+    }
+    rgbFinalString += `${rgbValue},`;
+  }
+  rgbFinalString = rgbFinalString.slice(0, -1) + ")";
+  this.style.backgroundColor = `${rgbFinalString}`;
+  console.log(this.style.backgroundColor);
+};
 
 // Random color
 let setColorRandom = function () {
@@ -30,8 +52,9 @@ let colorize = function (setColorX, allCells) {
 };
 
 let generateCanvas = function (nCells, setColorX) {
-  // Create a cell with corresponding "width" properties.
+  // Create a cell with corresponding "width" and "bgColor" properties.
   let oneCell = document.createElement("div");
+  oneCell.style.backgroundColor = "rgb(250, 250, 250)";
   oneCell.style.width = `${500 / nCells}px`;
 
   // Create all the cells in the container and  a variable for the node list.
@@ -44,7 +67,7 @@ let generateCanvas = function (nCells, setColorX) {
   colorize(setColorX, allCells);
 };
 
-generateCanvas(numberOfCells, setColorBlack);
+generateCanvas(numberOfCells, setColorDarken);
 
 // Reset the main canvas with a new number of cells.
 let resetAndGenerate = function (nCells, setColor) {
@@ -58,3 +81,4 @@ let resetAndGenerate = function (nCells, setColor) {
 // console.log(setColorBlack());
 
 // resetAndGenerate(4, setColorBlack);
+// console.log();
