@@ -30,6 +30,8 @@ a {
   min-width: 40%;
   padding-block: 10%;
   flex: 1;
+
+  transition: all 0.3s;
 }
 
 a:hover {
