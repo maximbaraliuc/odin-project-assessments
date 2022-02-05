@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 // Creating the container for the canvas
 // let mainCanvas = document.getElementsByClassName("main-canvas")[0];
 let mainCanvas = document.querySelector(".main-canvas");
@@ -15,7 +15,6 @@ let numberOfCells = 10;
 let setColorBlack = function (e) {
   this.style.backgroundColor = "rgb(0, 0, 0)";
   console.log("BLACK APPLIED");
-  return;
 };
 
 // ==========================================================================
@@ -42,7 +41,6 @@ let setColorDarken = function () {
   this.style.backgroundColor = `${rgbFinalString}`;
   // console.log(this.style.backgroundColor);
   console.log("DARKEN APPLIED");
-  return;
 };
 
 // ==========================================================================
@@ -60,7 +58,6 @@ let setColorRandom = function () {
   let rgb = rgbGenerator();
   this.style.backgroundColor = `${rgb}`;
   console.log("RANDOM APPLIED");
-  return;
 };
 
 // ==========================================================================
@@ -81,8 +78,6 @@ let pencil = function (setColorX, allCells) {
   //     elem.removeEventListener("mouseenter", setColorX, false);
   //   });
   /* e.removeEventListener("mouseenter", (e) => console.log("EVENT REMOVED")) */
-
-  return;
 };
 
 // ==========================================================================
@@ -122,8 +117,8 @@ generateCanvas(numberOfCells);
 let gridCells = document.getElementsByClassName("grid-cell");
 console.log(gridCells);
 
-pencil(setColorDarken, gridCells);
-// pencil(setColorBlack, gridCells);
+// pencil(setColorDarken, gridCells);
+pencil(setColorBlack, gridCells);
 // pencil(setColorRandom, gridCells);
 
 // ==========================================================================
