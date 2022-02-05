@@ -11,7 +11,36 @@
   </head>
   <body>
     <h1>Etch-A-Sketch</h1>
+    <main>
+      <div class="main-canvas"></div>
+      <aside>
+        <div class="title">Pick a color</div>
+        <div>
+          <input type="color" id="choose" name="choose" value="#333333" />
+          <!-- <label for="choose">Head</label> -->
+        </div>
+        <button id="random">Random color</button>
+        <button id="darken">Darken</button>
+        <button id="black">Black</button>
+        <div class="title">Grid Size</div>
+        <div class="slider-wrap">
+          <!-- <label for="grid">Grid Size</label> -->
+          <input
+            autocomplete="off"
+            id="grid"
+            type="range"
+            min="2"
+            max="64"
+            value="8"
+            step="2"
+            oninput="outputUpdate(value)"
+          />
+          <!-- <output for="grid" class="grid-size">8</output> -->
+          <div class="grid-size">8 x 8</div>
+        </div>
 
-    <div class="main-canvas"></div>
+        <button id="reset">Reset</button>
+      </aside>
+    </main>
   </body>
 </html>
