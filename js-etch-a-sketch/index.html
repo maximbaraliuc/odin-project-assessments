@@ -17,7 +17,7 @@
         <div class="title">Select & generate</div>
         <div class="tittle-small">Pick a color</div>
         <div>
-          <input type="color" id="choice" name="choose" value="#333333" />
+          <input autocomplete="off" type="color" id="choice" name="choose" value="#111111" />
           <!-- <label for="choose">Head</label> -->
         </div>
         <button id="random">Random color</button>
@@ -35,7 +35,7 @@
             value="16"
             step="2"
             oninput="outputUpdate(value)"
-            oninput="sizeUpdate(value)"
+            onchange="sizeUpdate(value)"
           />
           <!-- <output for="grid" class="grid-size">8</output> -->
           <div class="grid-size">16 x 16</div>

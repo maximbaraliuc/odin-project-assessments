@@ -1,16 +1,6 @@
 "use strict";
 
-// ==========================================================================
-// Input GRID SIZE
-
 // Update the slider output
-function outputUpdate(size) {
-  // document.querySelector(".grid-size").value = size;
-  document.querySelector(".grid-size").textContent = `${size} x ${size}`;
-}
-function sizeUpdate(value) {
-  return document.querySelector(".slider-wrap input").value;
-}
 let slider = {
   size: sizeUpdate,
 };
@@ -139,7 +129,7 @@ generateCanvas(slider.size());
 
 // Code goes after the generateCanvas is run.
 let gridCells = document.getElementsByClassName("grid-cell");
-console.log(gridCells);
+// console.log(gridCells);
 
 usePencil(); // USES GLOBAL: pen.tipColor and gridCells
 
@@ -154,6 +144,8 @@ usePencil(); // USES GLOBAL: pen.tipColor and gridCells
 let choiceInput = document.getElementById("choice");
 choiceInput.addEventListener("input", function () {
   pen.tipColor = setColorChoice;
+  resetAndGenerate(slider.size());
+  usePencil();
 });
 
 // ==========================================================================
@@ -161,6 +153,8 @@ choiceInput.addEventListener("input", function () {
 let randomButton = document.getElementById("random");
 randomButton.addEventListener("click", function () {
   pen.tipColor = setColorRandom;
+  resetAndGenerate(slider.size());
+  usePencil();
 });
 
 // ==========================================================================
@@ -168,6 +162,8 @@ randomButton.addEventListener("click", function () {
 let darkenButton = document.getElementById("darken");
 darkenButton.addEventListener("click", function () {
   pen.tipColor = setColorDarken;
+  resetAndGenerate(slider.size());
+  usePencil();
 });
 
 // ==========================================================================
@@ -175,6 +171,8 @@ darkenButton.addEventListener("click", function () {
 let blackButton = document.getElementById("black");
 blackButton.addEventListener("click", function () {
   pen.tipColor = setColorBlack;
+  resetAndGenerate(slider.size());
+  usePencil();
 });
 
 // ==========================================================================
@@ -187,12 +185,23 @@ generateButton.addEventListener("click", function () {
 });
 
 // ==========================================================================
+// Input GRID SIZE
+function outputUpdate(size) {
+  document.querySelector(".grid-size").textContent = `${size} x ${size}`;
+}
+function sizeUpdate(value) {
+  return document.querySelector(".slider-wrap input").value;
+}
+
+// ==========================================================================
 // Button RESET
 let resetButton = document.getElementById("reset");
 resetButton.addEventListener("click", function () {
-  resetAndGenerate(16);
   pen.tipColor = setColorBlack;
+  // Put slider at 16
+  document.querySelector(".slider-wrap input").value = "16";
+  // Text under slider to match the slider value
+  document.querySelector(".grid-size").textContent = "16 x 16";
+  resetAndGenerate(slider.size());
   usePencil();
 });
-
-console.log(reset);
