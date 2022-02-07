@@ -29,8 +29,8 @@ h1 {
   box-sizing: border-box;
   aspect-ratio: 1/1;
   /* background-color: rgb(255, 255, 255); */
-  border: 0.5px solid rgb(209, 218, 226);
-  /* border-radius: 10px; */
+  border: 0.5px solid rgb(231, 231, 231);
+  /* border-radius: 3px; */
 }
 
 main {
@@ -39,7 +39,7 @@ main {
   gap: 30px;
 }
 aside {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   flex-flow: column wrap;
   gap: 0.4rem;

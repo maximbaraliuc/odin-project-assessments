@@ -14,9 +14,10 @@
     <main>
       <div class="main-canvas"></div>
       <aside>
-        <div class="title">Pick a color</div>
+        <div class="title">Select & generate</div>
+        <div class="tittle-small">Pick a color</div>
         <div>
-          <input type="color" id="choose" name="choose" value="#333333" />
+          <input type="color" id="choice" name="choose" value="#333333" />
           <!-- <label for="choose">Head</label> -->
         </div>
         <button id="random">Random color</button>
@@ -31,13 +32,15 @@
             type="range"
             min="2"
             max="64"
-            value="8"
+            value="16"
             step="2"
             oninput="outputUpdate(value)"
+            oninput="sizeUpdate(value)"
           />
           <!-- <output for="grid" class="grid-size">8</output> -->
-          <div class="grid-size">8 x 8</div>
+          <div class="grid-size">16 x 16</div>
         </div>
+        <button id="generate">Generate new canvas</button>
 
         <button id="reset">Reset</button>
       </aside>
