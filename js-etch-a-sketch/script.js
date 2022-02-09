@@ -89,8 +89,8 @@ let pen = {
 let usePencil = function () {
   // Event listener for each element in the container to change background color .
   // Depends on an external function for setColor...
-  for (let elem of gridCells) {
-    elem.addEventListener("mouseover", pen.tipColor);
+  for (let cell of gridCells) {
+    cell.addEventListener("mouseover", pen.tipColor);
     // elem.removeEventListener("mouseenter", penTip);
   }
 };
@@ -108,8 +108,9 @@ let generateCanvas = function (nCells) {
   mainCanvas.style.griTemplateRows = `repeat(${nCells}, 1fr)`;
 
   // Create all the cells in the container and a variable for the node list.
-  for (let i = 0; i < nCells * nCells; i++) {
-    let copyCell = oneCell.cloneNode();
+  let copyCell;
+  for (let copy = 0; copy < nCells * nCells; copy++) {
+    copyCell = oneCell.cloneNode();
     mainCanvas.appendChild(copyCell);
   }
 };
@@ -127,7 +128,7 @@ let resetAndGenerate = function (nCells) {
 // ==========================================================================
 generateCanvas(slider.size());
 
-// Code goes after the generateCanvas is run.
+// Selection is possible after the main canvas is generated
 let gridCells = document.getElementsByClassName("grid-cell");
 // console.log(gridCells);
 
