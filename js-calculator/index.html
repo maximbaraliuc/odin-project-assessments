@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta id="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" type="image/png" href="favicon.png" />
     <link rel="stylesheet" href="style.css" />
     <script src="calculator.js" defer></script>
@@ -11,30 +11,31 @@
   </head>
   <body>
     <h1>Calculator</h1>
-    <div class="body">
+    <div class="calculator-body">
       <div class="display">
         <span class="operator-display">+</span>
         <span class="number-display">73543.8</span>
       </div>
       <div class="allbuttons">
-        <button type="button" name="allclear" value="allclear">AC</button>
-        <button type="button" name="clear" value="clear">C</button>
-        <button type="button" name="divide" value="divide">%</button>
-        <button type="button" name="multiply" value="multiply">*</button>
-        <button type="button" class="number" name="7" value="7">7</button>
-        <button type="button" class="number" name="8" value="8">8</button>
-        <button type="button" class="number" name="9" value="9">9</button>
-        <button type="button" name="subtract" value="subtract">-</button>
-        <button type="button" class="number" name="4" value="4">4</button>
-        <button type="button" class="number" name="5" value="5">5</button>
-        <button type="button" class="number" name="6" value="6">6</button>
-        <button type="button" name="add" value="add">+</button>
-        <button type="button" class="number" name="1" value="1">1</button>
-        <button type="button" class="number" name="2" value="2">2</button>
-        <button type="button" class="number" name="3" value="3">3</button>
-        <button type="button" class="equal" name="equal" value="equal">=</button>
-        <button type="button" class="number" name="0" value="0">0</button>
-        <button type="button" name="decimal" value="decimal">.</button>
+        <button type="button" class="extra-btn" id="allclear" value="allclear">AC</button>
+        <button type="button" class="extra-btn" id="clear" value="clear">C</button>
+        <button type="button" class="operator" id="divide" value="divide">%</button>
+        <button type="button" class="operator" id="multiply" value="multiply">*</button>
+        <button type="button" class="number" id="seven" value="7">7</button>
+        <button type="button" class="number" id="eight" value="8">8</button>
+        <button type="button" class="number" id="nine" value="9">9</button>
+        <button type="button" class="operator" id="subtract" value="subtract">-</button>
+        <button type="button" class="number" id="four" value="4">4</button>
+        <button type="button" class="number" id="five" value="5">5</button>
+        <button type="button" class="number" id="six" value="6">6</button>
+        <button type="button" class="operator" id="add" value="add">+</button>
+        <button type="button" class="number" id="one" value="1">1</button>
+        <button type="button" class="number" id="two" value="2">2</button>
+        <button type="button" class="number" id="three" value="3">3</button>
+
+        <button type="button" class="number" id="zero" value="0">0</button>
+        <button type="button" class="number" id="decimal" value="decimal">.</button>
+        <button type="button" class="equal" id="equal" value="equal">=</button>
       </div>
     </div>
   </body>
