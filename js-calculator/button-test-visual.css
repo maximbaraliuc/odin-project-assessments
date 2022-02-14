@@ -1,0 +1,39 @@
+img {
+  width: 100px;
+  /* margin: 2px; */
+  border-radius: 5px;
+  box-shadow: 2px 3px 5px rgb(27, 27, 27);
+}
+
+img:active {
+  translate: 1px 3px;
+  box-shadow: 1px 0px 5px rgb(27, 27, 27);
+}
+
+.button-background {
+  background-image: url(images/button-orange.svg);
+  background-size: cover;
+  width: 100px;
+  aspect-ratio: 1/1;
+
+  text-align: center;
+  vertical-align: middle;
+  line-height: 100px;
+
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+
+  border-radius: 5px;
+  box-shadow: 2px 3px 5px rgb(27, 27, 27);
+  margin: 0.3rem;
+}
+
+.button-background:hover {
+  cursor: pointer;
+}
+
+.button-background:active {
+  translate: 1px 3px;
+  box-shadow: 1px 0px 5px rgb(27, 27, 27);
+}
