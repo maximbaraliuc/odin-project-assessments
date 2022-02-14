@@ -1,0 +1,18 @@
+.display {
+  border: 1px solid grey;
+  width: 200px;
+  height: 50px;
+  margin: 1rem;
+}
+
+button {
+  width: 60px;
+  aspect-ratio: 1/1;
+
+  border-radius: 50%;
+  margin: 0.2rem;
+  border: none;
+  background-color: darkcyan;
+  color: beige;
+  font-weight: bold;
+}
