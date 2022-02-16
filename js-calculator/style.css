@@ -20,18 +20,26 @@ body {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
+  /* box-sizing: border-box; */
 }
 
 .calculator-body {
   background-color: #222;
   border-radius: 5px;
+  width: 400px;
+  /* With width lower than buttons and display */
+  /* display: flex;
+  flex-flow: column;
+  align-items: center; */
 }
 
 .display {
-  border: 1px solid grey;
-  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid grey; */
+  /* width: 90%; */
   height: 50px;
-  margin: 1rem;
+  margin: 3rem 2rem;
   color: aqua;
   text-shadow: 0px 0px 5px aqua;
   font-family: "Orbitron", sans-serif;
@@ -58,8 +66,9 @@ body {
 }
 
 #equal {
-  background-image: url("images/button-darkgrey.svg");
+  /* background-image: url("images/button-darkgrey.svg"); */
   /* aspect-ratio: unset; */
+  background-color: lightslategray;
 
   grid-column: 4 /5;
   grid-row: 4/6;
@@ -94,12 +103,13 @@ body {
 }
 
 .number {
-  background-image: url("images/button-lightgrey.svg");
-  background-size: cover;
+  /* background-image: url("images/button-lightgrey.svg"); */
+  /* background-size: cover; */
 }
 
 .extra-btn,
 .operator {
-  background-image: url("images/button-blue.svg");
-  background-size: cover;
+  /* background-image: url("images/button-blue.svg"); */
+  /* background-size: cover; */
+  background-color: lightseagreen;
 }
