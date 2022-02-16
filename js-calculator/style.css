@@ -1,3 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=VT323&display=swap");
+/* font-family: 'Orbitron', sans-serif; */
+/* font-family: 'VT323', monospace; */
+
+@import url("https://use.typekit.net/gor7cda.css");
+/* font-family: neuropol-nova, sans-serif;
+font-weight: 400;
+font-style: normal; */
+
+/* font-family: brevier,sans-serif;
+font-weight: 400;
+font-style: normal; */
+
+/* font-family: bd-brick, sans-serif;
+font-weight: 500;
+font-style: normal; */
+
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
@@ -12,9 +29,17 @@ body {
 
 .display {
   border: 1px solid grey;
-  width: 200px;
+  width: 300px;
   height: 50px;
   margin: 1rem;
+  color: aqua;
+  text-shadow: 0px 0px 5px aqua;
+  font-family: "Orbitron", sans-serif;
+  /* font-family: "VT323", monospace; */
+  /* font-family: "bd-brick", sans-serif;
+  font-family: "neuropol-nova", sans-serif;
+  font-family: "brevier", sans-serif;
+  font-size: 2rem; */
 }
 
 .allbuttons {
@@ -48,7 +73,8 @@ body {
 
   border-width: 0;
   border-radius: 5px;
-  font-weight: 600;
+  font-size: 1.3rem;
+  font-weight: 500;
   color: #222;
 
   box-shadow: 1px 1px 3px #222;
@@ -56,12 +82,13 @@ body {
 }
 
 .allbuttons > button:hover {
-  translate: 0px -2px;
+  transform: translate(0px, -2px);
   box-shadow: 2px 2px 3px #222;
+  cursor: pointer;
 }
 
 .allbuttons > button:active {
-  translate: 0px 2px;
+  transform: translate(0px, 2px);
   box-shadow: 0px 0px 3px #222;
   /* z-index: -1; */
 }
