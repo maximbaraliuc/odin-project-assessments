@@ -44,10 +44,10 @@ body {
   text-shadow: 0px 0px 5px aqua;
   font-family: "Orbitron", sans-serif;
   /* font-family: "VT323", monospace; */
-  /* font-family: "bd-brick", sans-serif;
-  font-family: "neuropol-nova", sans-serif;
-  font-family: "brevier", sans-serif;
-  font-size: 2rem; */
+  /* font-family: "bd-brick", sans-serif; */
+  /* font-family: "neuropol-nova", sans-serif; */
+  /* font-family: "brevier", sans-serif; */
+  font-size: 1.2rem;
 }
 
 .allbuttons {

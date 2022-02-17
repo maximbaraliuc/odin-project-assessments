@@ -12,28 +12,28 @@ let operatorCounter = 0;
 // to a number when doing the conversion ;) OR JUST A CONVERTOR WHEN SAVING ???????
 
 let operate = {
-  a: undefined,
-  b: undefined,
-  arithmeticOperator: undefined,
+  a: null,
+  b: null,
+  arithmeticOperator: null,
 
   // strToNumber: function (str) {
   //   a
   // }, ????????????????????????????
 
-  add: function (a, b) {
-    return a + b;
+  add: function () {
+    return this.a + this.b;
   },
 
-  subtract: function (a, b) {
-    return a - b;
+  subtract: function () {
+    return this.a - this.b;
   },
 
-  multiply: function (a, b) {
-    return a * b;
+  multiply: function () {
+    return this.a * this.b;
   },
 
-  divide: function (a, b) {
-    return a / b;
+  divide: function () {
+    return this.a / this.b;
   },
 };
 
@@ -82,7 +82,10 @@ buttonsValue.forEach((button) =>
 
 let numberButtons = document.querySelectorAll(".number");
 
-// Displays number (as a string). Checks the length - RESOLVE LATER
+// Displays number (as a string). Checks the length - RESOLVE LATER !!!!!!!!!!!!!!!1111
+// TODO - bugs when zero is clicked first
+// TODO it is possible to simplify the function, and to reduce numberToDisplay
+
 let returnValue = function () {
   // console.log(this.value, Number(this.value));
   numberToDisplay += this.value;
@@ -98,40 +101,49 @@ let operatorButtons = document.querySelectorAll(".operator");
 
 let returnOperator = function () {
   // console.log(this.value, typeof this.value);
-  // Change operator when clicked second time.
-  // Correct the behavior when you enter the operator the first off all buttons
-  if (numberToDisplay === "" && operate.arithmeticOperator === undefined) {
+
+  // The operator is clicked as a first button. Nothing changes but the display.
+  if (numberToDisplay === "" && operate.arithmeticOperator === null) {
     operatorToDisplay = this.value;
     populateOperator(operatorToDisplay);
     return;
+
+    // When the operator is clicked and  there is already a number stored in memory.
+    // Selecting the operator multiple times in a row displays the new operator
   } else if (numberToDisplay === "") {
+    // No number clicked.
     operatorToDisplay = this.value;
     operate.arithmeticOperator = operatorToDisplay;
     populateOperator(operatorToDisplay);
     return;
   }
-  // A Store first number - operate.a
+
+  // A. Store first number - operate.a
   if (operatorCounter === 0) {
     operatorToDisplay = this.value;
     populateOperator(operatorToDisplay);
+
     operate.a = +numberToDisplay;
     numberToDisplay = "";
+
     operate.arithmeticOperator = operatorToDisplay;
     populateNumbers(operate.a);
+
     operatorCounter = 1;
   }
 
-  // B Store first number - operate.b
+  // B. Store first number - operate.b
   if (operatorCounter === 1) {
     operatorToDisplay = this.value;
     populateOperator(operatorToDisplay);
-    // operate.a = +numberToDisplay;
-    // numberToDisplay = "";
-    // operate.arithmeticOperator = operatorToDisplay;
-    // populateNumbers(operate.a);
-    operatorCounter = 1;
-  }
 
+    operate.b = +numberToDisplay;
+    numberToDisplay = "";
+    // RUN THE CALCULATIONS
+    operate.a = operate[operate.arithmeticOperator]();
+    operate.arithmeticOperator = operatorToDisplay;
+    populateNumbers(operate.a);
+    operatorCounter = 1;
   }
 };
 operatorButtons.forEach((button) => button.addEventListener("click", returnOperator));
