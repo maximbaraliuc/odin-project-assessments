@@ -100,16 +100,38 @@ let returnOperator = function () {
   // console.log(this.value, typeof this.value);
   // Change operator when clicked second time.
   // Correct the behavior when you enter the operator the first off all buttons
-  if (numberToDisplay === "") {
+  if (numberToDisplay === "" && operate.arithmeticOperator === undefined) {
+    operatorToDisplay = this.value;
+    populateOperator(operatorToDisplay);
+    return;
+  } else if (numberToDisplay === "") {
     operatorToDisplay = this.value;
     operate.arithmeticOperator = operatorToDisplay;
+    populateOperator(operatorToDisplay);
+    return;
   }
-  operatorToDisplay = this.value;
-  populateOperator(operatorToDisplay);
-  operate.a = +numberToDisplay;
-  numberToDisplay = "";
-  operate.arithmeticOperator = operatorToDisplay;
-  populateNumbers(operate.a);
-  operatorCounter = 1;
+  // A Store first number - operate.a
+  if (operatorCounter === 0) {
+    operatorToDisplay = this.value;
+    populateOperator(operatorToDisplay);
+    operate.a = +numberToDisplay;
+    numberToDisplay = "";
+    operate.arithmeticOperator = operatorToDisplay;
+    populateNumbers(operate.a);
+    operatorCounter = 1;
+  }
+
+  // B Store first number - operate.b
+  if (operatorCounter === 1) {
+    operatorToDisplay = this.value;
+    populateOperator(operatorToDisplay);
+    // operate.a = +numberToDisplay;
+    // numberToDisplay = "";
+    // operate.arithmeticOperator = operatorToDisplay;
+    // populateNumbers(operate.a);
+    operatorCounter = 1;
+  }
+
+  }
 };
 operatorButtons.forEach((button) => button.addEventListener("click", returnOperator));
