@@ -1,6 +1,25 @@
+"use strict";
+
+// let numberA;
+// let numberB;
+// let arithmeticOperator;
+
+let operatorCounter = 0;
+
 // CALCULATOR FUNCTIONS
 
+// Operate should have a function  that converts the string of a and b
+// to a number when doing the conversion ;) OR JUST A CONVERTOR WHEN SAVING ???????
+
 let operate = {
+  a: undefined,
+  b: undefined,
+  arithmeticOperator: undefined,
+
+  // strToNumber: function (str) {
+  //   a
+  // }, ????????????????????????????
+
   add: function (a, b) {
     return a + b;
   },
@@ -34,10 +53,6 @@ let populateOperator = function (toDisplay) {
 };
 // ======================
 
-let numberA;
-let numberB;
-let arithmeticOperator;
-
 // Buttons value (equals to operator) should be the same string as functions names above.
 // const operate = function (operator, a, b) {
 //   return operator(a, b);
@@ -66,8 +81,10 @@ buttonsValue.forEach((button) =>
 ); // ======================================================================== */
 
 let numberButtons = document.querySelectorAll(".number");
+
+// Displays number (as a string). Checks the length - RESOLVE LATER
 let returnValue = function () {
-  console.log(this.value, Number(this.value));
+  // console.log(this.value, Number(this.value));
   numberToDisplay += this.value;
   populateNumbers(numberToDisplay); // Populates the display with each number button push.
   // return this.value;
@@ -75,9 +92,24 @@ let returnValue = function () {
 numberButtons.forEach((button) => button.addEventListener("click", returnValue));
 
 let operatorButtons = document.querySelectorAll(".operator");
+// Save the numA
+// Save the numB
+// Save operator
+
 let returnOperator = function () {
-  console.log(this.value, typeof this.value);
+  // console.log(this.value, typeof this.value);
+  // Change operator when clicked second time.
+  // Correct the behavior when you enter the operator the first off all buttons
+  if (numberToDisplay === "") {
+    operatorToDisplay = this.value;
+    operate.arithmeticOperator = operatorToDisplay;
+  }
   operatorToDisplay = this.value;
   populateOperator(operatorToDisplay);
+  operate.a = +numberToDisplay;
+  numberToDisplay = "";
+  operate.arithmeticOperator = operatorToDisplay;
+  populateNumbers(operate.a);
+  operatorCounter = 1;
 };
 operatorButtons.forEach((button) => button.addEventListener("click", returnOperator));
