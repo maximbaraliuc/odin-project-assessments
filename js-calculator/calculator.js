@@ -1,24 +1,30 @@
 "use strict";
 
-// let numberA;
-// let numberB;
-// let arithmeticOperator;
+let numbersDisplay = document.querySelector(".number-display");
+let operatorsDisplay = document.querySelector(".operator-display");
 
-let operatorCounter = 0;
+let numberInput = ""; // TODO - check if it possible to reduce
+let operatorInput = ""; // TODO - check if it possible to reduce
 
-// CALCULATOR FUNCTIONS
+let numberButtons = document.querySelectorAll(".number");
+let operatorButtons = document.querySelectorAll(".operator");
 
-// Operate should have a function  that converts the string of a and b
-// to a number when doing the conversion ;) OR JUST A CONVERTOR WHEN SAVING ???????
+// FUNCTIONS TO DISPLAY NUMBERS AND OPERATORS
+let populateNumbers = function (toDisplay) {
+  numbersDisplay.textContent = toDisplay;
+};
+
+let populateOperator = function (toDisplay) {
+  operatorsDisplay.textContent = toDisplay;
+};
+
+// CALCULATOR'S OPERATE OBJECT WITH ARITHMETIC FUNCTIONS AND VARIABLES
+// a and b values are transformed from "string" to "number" when stored
 
 let operate = {
   a: null,
   b: null,
   arithmeticOperator: null,
-
-  // strToNumber: function (str) {
-  //   a
-  // }, ????????????????????????????
 
   add: function () {
     return this.a + this.b;
@@ -37,27 +43,61 @@ let operate = {
   },
 };
 
-// DISPLAY
-let numberDisplay = document.querySelector(".number-display");
-let operatorDisplay = document.querySelector(".operator-display");
+// Displays number (as a string). Checks the length - RESOLVE LATER !!!!!!!!!!!!!!!1111
+// TODO - bugs when zero is clicked first||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+// TODO it is possible to simplify the function, and to reduce numberInput?????||||||||||||||||||||||||||||||||||||
+// TODO check requirements for operation with zero. Mainly division||||||||||||||||||||||||||||||||||||||||||||||||||||
+// TODO correct when the numbers starts with zero but has no decimal point||||||||||||||||||||||||||||||||||||||||||
+// TODO Refactoring. Variables names
 
-let numberToDisplay = ""; // Maybe  should be transformed into a function ?
-let operatorToDisplay = "";
-
-let populateNumbers = function (toDisplay) {
-  numberDisplay.textContent = toDisplay;
+let returnValue = function () {
+  numberInput += this.value;
+  populateNumbers(numberInput); // Populates the display with each number button push.
+  // return this.value;
 };
 
-let populateOperator = function (toDisplay) {
-  operatorDisplay.textContent = toDisplay;
+let returnOperator = function () {
+  // When the operator is clicked as a first button. Nothing changes but the display.
+  // TODO Wait for the implementation of "=" and other rules and check if it possible to omit this "if" condition||||||
+  if (numberInput === "" && operate.arithmeticOperator === null) {
+    operatorInput = this.value;
+    populateOperator(operatorInput);
+    return;
+
+    // When the operator is clicked again immediately after a number was just stored in memory. Leads to this condition
+    // Selecting the operator multiple times in a row displays the new operator and does nothing else till it has numbers to work with
+  } else if (numberInput === "") {
+    // No number clicked.
+    operatorInput = this.value;
+    operate.arithmeticOperator = operatorInput;
+    populateOperator(operatorInput);
+    return;
+  }
+
+  // A. Store first number - the "a" number ==> operate.a. Runs one time if no reset
+  if (operate.a === null) {
+    operate.a = Number(numberInput);
+  }
+  // B. Save a new "a" number and save a "b" number and calculate
+  // Code runs when a number is already stored and on display is a new number
+  else if (operate.a !== null) {
+    operate.b = Number(numberInput);
+    // RUN THE CALCULATIONS
+    operate.a = operate[operate.arithmeticOperator]();
+  }
+  operatorInput = this.value;
+  populateOperator(operatorInput);
+  numberInput = "";
+  operate.arithmeticOperator = operatorInput;
+  populateNumbers(operate.a);
 };
-// ======================
 
-// Buttons value (equals to operator) should be the same string as functions names above.
-// const operate = function (operator, a, b) {
-//   return operator(a, b);
-// };
+// ===========================================================================
+numberButtons.forEach((button) => button.addEventListener("click", returnValue));
+operatorButtons.forEach((button) => button.addEventListener("click", returnOperator));
+// ===========================================================================
 
+// SOUND FEEDBACK
 /* // Check the value and names on click TEMPORARY CODE =========================
 // Audio for key sounds
 let clickDown = new Audio("audio/button-down.mp3");
@@ -79,71 +119,3 @@ buttonsValue.forEach((button) =>
     })
   )
 ); // ======================================================================== */
-
-let numberButtons = document.querySelectorAll(".number");
-
-// Displays number (as a string). Checks the length - RESOLVE LATER !!!!!!!!!!!!!!!1111
-// TODO - bugs when zero is clicked first
-// TODO it is possible to simplify the function, and to reduce numberToDisplay
-
-let returnValue = function () {
-  // console.log(this.value, Number(this.value));
-  numberToDisplay += this.value;
-  populateNumbers(numberToDisplay); // Populates the display with each number button push.
-  // return this.value;
-};
-numberButtons.forEach((button) => button.addEventListener("click", returnValue));
-
-let operatorButtons = document.querySelectorAll(".operator");
-// Save the numA
-// Save the numB
-// Save operator
-
-let returnOperator = function () {
-  // console.log(this.value, typeof this.value);
-
-  // The operator is clicked as a first button. Nothing changes but the display.
-  if (numberToDisplay === "" && operate.arithmeticOperator === null) {
-    operatorToDisplay = this.value;
-    populateOperator(operatorToDisplay);
-    return;
-
-    // When the operator is clicked and  there is already a number stored in memory.
-    // Selecting the operator multiple times in a row displays the new operator
-  } else if (numberToDisplay === "") {
-    // No number clicked.
-    operatorToDisplay = this.value;
-    operate.arithmeticOperator = operatorToDisplay;
-    populateOperator(operatorToDisplay);
-    return;
-  }
-
-  // A. Store first number - operate.a
-  if (operatorCounter === 0) {
-    operatorToDisplay = this.value;
-    populateOperator(operatorToDisplay);
-
-    operate.a = +numberToDisplay;
-    numberToDisplay = "";
-
-    operate.arithmeticOperator = operatorToDisplay;
-    populateNumbers(operate.a);
-
-    operatorCounter = 1;
-  }
-
-  // B. Store first number - operate.b
-  if (operatorCounter === 1) {
-    operatorToDisplay = this.value;
-    populateOperator(operatorToDisplay);
-
-    operate.b = +numberToDisplay;
-    numberToDisplay = "";
-    // RUN THE CALCULATIONS
-    operate.a = operate[operate.arithmeticOperator]();
-    operate.arithmeticOperator = operatorToDisplay;
-    populateNumbers(operate.a);
-    operatorCounter = 1;
-  }
-};
-operatorButtons.forEach((button) => button.addEventListener("click", returnOperator));
