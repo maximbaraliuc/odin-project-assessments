@@ -20,6 +20,7 @@ body {
   flex-flow: column wrap;
   align-items: center;
   /* box-sizing: border-box; */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .calculator-body {
