@@ -162,13 +162,20 @@ let equals = function () {
 // DIVISION BY ZERO ERROR
 let zeroError = function () {
   if (operate.a === "Cannot divide by zero") {
+    console.log("DIVISION BY ZERO DETECTED");
     reset();
     populateNumbers("Cannot divide by zero");
     return;
   }
 };
 
-let addDecimal = function () {};
+let addDecimal = function () {
+  if (!numberInput.includes(".") && numberInput !== "") {
+    console.log("ADD A DECIMAL POINT");
+    numberInput += ".";
+    populateNumbers(numberInput);
+  }
+};
 
 // ===========================================================================
 numberButtons.forEach((button) => button.addEventListener("click", returnValue));
