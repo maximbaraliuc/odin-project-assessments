@@ -27,7 +27,8 @@ let populateOperator = function (toDisplay) {
 let operate = {
   a: null,
   b: null,
-  arithmeticOperator: null,
+  mathOperator: null,
+  equal: null,
 
   add: function () {
     return this.a + this.b;
@@ -52,52 +53,74 @@ let operate = {
 // TODO check requirements for operation with zero. Mainly division||||||||||||||||||||||||||||||||||||||||||||||||||||
 // TODO correct when the numbers starts with zero but has no decimal point||||||||||||||||||||||||||||||||||||||||||
 // TODO Refactoring. Variables names
+// TODO Check if the relation (operate.mathOperator operatorInput) can be simplified.
 
 let returnValue = function () {
   numberInput += this.value;
   populateNumbers(numberInput); // Populates the display with each number button push.
+  operate.b = Number(numberInput); // Store the input as the second number. Ready for math calculations
   // return this.value;
 };
 
 let returnOperator = function () {
-  // When the operator is clicked as a first button. Nothing changes but the display.
+  // When the operator is clicked as a first button. Nothing changes.
   // TODO Wait for the implementation of "=" and other rules and check if it possible to omit this "if" condition||||||
-  if (numberInput === "" && operate.arithmeticOperator === null) {
-    operatorInput = this.value;
-    populateOperator(operatorInput);
+  if (numberInput === "" && operate.mathOperator === null) {
+    console.log("Step 01");
+    // operatorInput = this.value;
+    // populateOperator(operatorInput);
     return;
 
-    // When the operator is clicked again immediately after a number was just stored in memory. Leads to this condition
+    // When the operator is clicked again immediately after a number or equal was just stored in memory. Leads to this condition
     // Selecting the operator multiple times in a row displays the new operator and does nothing else till it has numbers to work with
   } else if (numberInput === "") {
+    console.log("Step 02");
+    // If there was an equals calculation. Save the value and reset it
+    if (operate.equal !== null) {
+      operate.b = operate.equal;
+    }
+    operate.equal = null;
     // No number clicked.
     operatorInput = this.value;
-    operate.arithmeticOperator = operatorInput;
+    operate.mathOperator = operatorInput;
     populateOperator(operatorInput);
     return;
   }
 
   // A. Store first number - the "a" number ==> operate.a. Runs one time if no reset
   if (operate.a === null) {
+    console.log("Step 03 FIRST TIME STORE - A");
     operate.a = Number(numberInput);
   }
-  // B. Save a new "a" number and save a "b" number and calculate
+  // B. Save a new "a" number  and calculates
   // Code runs when a number is already stored and on display is a new number
   else if (operate.a !== null) {
-    operate.b = Number(numberInput);
+    console.log("Step 04 CALCULATE");
+
+    // operate.b = Number(numberInput);
     // RUN THE CALCULATIONS
-    operate.a = operate[operate.arithmeticOperator]();
+    operate.a = operate[operate.mathOperator]();
   }
   operatorInput = this.value;
   populateOperator(operatorInput);
   numberInput = "";
-  operate.arithmeticOperator = operatorInput;
+  operate.mathOperator = operatorInput;
   populateNumbers(operate.a);
 };
 
 let reset = function () {};
 let backspace = function () {};
-let equals = function () {};
+let equals = function () {
+  // Runs only when there are values and a math operator for an "equal" operation to take place
+  if (operate.a !== null && operate.mathOperator !== null) {
+    console.log("RUN EQUALS");
+    numberInput = "";
+    operate.a = operate[operate.mathOperator]();
+    operate.equal = operate.a;
+    populateOperator(operatorInput);
+    populateNumbers(operate.a);
+  }
+};
 
 // ===========================================================================
 numberButtons.forEach((button) => button.addEventListener("click", returnValue));
