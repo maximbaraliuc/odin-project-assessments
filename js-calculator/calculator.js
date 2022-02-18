@@ -8,6 +8,7 @@ let operatorButtons = document.querySelectorAll(".operator");
 let equalButton = document.querySelector("#equal");
 let allClearButton = document.querySelector("#all-clear");
 let backspaceButton = document.querySelector("#backspace");
+let decimalPoint = document.querySelector("#decimal");
 
 let numberInput = ""; // TODO - check if it possible to reduce
 let operatorInput = ""; // TODO - check if it possible to reduce
@@ -43,6 +44,9 @@ let operate = {
   },
 
   divide: function () {
+    if (this.b === 0) {
+      return "Cannot divide by zero";
+    }
     return this.a / this.b;
   },
 };
@@ -106,8 +110,10 @@ let returnOperator = function () {
   numberInput = "";
   operate.mathOperator = operatorInput;
   populateNumbers(operate.a);
+  zeroError();
 };
 
+// AC  RESET
 let reset = function () {
   console.log("CALCULATOR RESET");
   operate.a = null;
@@ -119,10 +125,8 @@ let reset = function () {
   populateOperator(".");
 };
 
+//  BACKSPACE
 let backspace = function () {
-  // if (numberInput === "") {
-  //   populateNumbers("|");
-  // }
   console.log("BACKSPACE IN PLACE");
   let modifiedInput = numberInput.split("");
   console.table(modifiedInput, "BEFORE");
@@ -138,19 +142,33 @@ let backspace = function () {
   operate.b = Number(numberInput);
 };
 
+// EQUAL SIGN
 let equals = function () {
   // Runs only when there are values and a math operator for an "equal" operation to take place
   if (operate.a !== null && operate.mathOperator !== null) {
     console.log("RUN EQUALS");
     numberInput = "";
     operate.a = operate[operate.mathOperator]();
+
     operate.equal = operate.a;
     populateOperator(operatorInput);
     populateNumbers(operate.a);
   } else {
     console.log("NOT ENOUGH DATA FOR AN OUTPUT");
   }
+  zeroError();
 };
+
+// DIVISION BY ZERO ERROR
+let zeroError = function () {
+  if (operate.a === "Cannot divide by zero") {
+    reset();
+    populateNumbers("Cannot divide by zero");
+    return;
+  }
+};
+
+let addDecimal = function () {};
 
 // ===========================================================================
 numberButtons.forEach((button) => button.addEventListener("click", returnValue));
@@ -158,6 +176,7 @@ operatorButtons.forEach((button) => button.addEventListener("click", returnOpera
 allClearButton.addEventListener("click", reset);
 backspaceButton.addEventListener("click", backspace);
 equalButton.addEventListener("click", equals);
+decimalPoint.addEventListener("click", addDecimal);
 
 // ===========================================================================
 
