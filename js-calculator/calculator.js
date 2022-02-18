@@ -9,6 +9,7 @@ let equalButton = document.querySelector("#equal");
 let allClearButton = document.querySelector("#all-clear");
 let backspaceButton = document.querySelector("#backspace");
 let decimalButton = document.querySelector("#decimal");
+let plusMinusButton = document.querySelector("#plus-minus");
 
 let numberInput = ""; // [-] TODO - check if it possible to reduce
 let operatorInput = ""; // [-] TODO - check if it possible to reduce
@@ -113,7 +114,7 @@ let reset = function () {
   showOperator("...");
 };
 
-//  BACKSPACE BUTTON
+//  BACKSPACE BUTTONs
 let backspace = function () {
   console.log("BACKSPACE IN PLACE");
   let modifiedInput = numberInput.split("");
@@ -121,6 +122,14 @@ let backspace = function () {
   modifiedInput.pop();
   // console.table(modifiedInput, "AFTER");
   numberInput = modifiedInput.join("");
+  // Check if its a small enough negative number to remoce the minus.
+  if (numberInput.startsWith("-")) {
+    if (numberInput.length === 2 && numberInput.endsWith("0")) {
+      numberInput = "";
+    } else if (numberInput.length === 1) {
+      numberInput = "";
+    }
+  }
   if (numberInput === "") {
     // When deleting the last character.
     numberInput = "0";
@@ -161,7 +170,24 @@ let addDecimal = function () {
     console.log("ADD A DECIMAL POINT");
     numberInput += ".";
     showNumbers(numberInput);
+    // If no other number is inserted after the dot. Calc will use operate.b value already stored
   }
+};
+
+// POSITIVE NEGATIVE
+let changeCharge = function () {
+  console.log("CHANGE CHARGE");
+  if (numberInput !== "" && numberInput !== "0" && numberInput !== "0.") {
+    if (numberInput.startsWith("-")) {
+      numberInput = numberInput.slice(1);
+    } else {
+      numberInput = "-" + numberInput;
+    }
+    operate.b = Number(numberInput);
+    showNumbers(numberInput);
+    return;
+  }
+  console.log("DID NOTHING");
 };
 
 // ===========================================================================
@@ -171,6 +197,7 @@ allClearButton.addEventListener("click", reset);
 backspaceButton.addEventListener("click", backspace);
 equalButton.addEventListener("click", equals);
 decimalButton.addEventListener("click", addDecimal);
+plusMinusButton.addEventListener("click", changeCharge);
 
 // ===========================================================================
 
@@ -180,22 +207,24 @@ decimalButton.addEventListener("click", addDecimal);
 let clickDown = new Audio("audio/button-down.mp3");
 let clickUp = new Audio("audio/button-up.mp3");
 
+let playDown = function () {
+  // console.log("value:", this.value);
+  // console.log("typeof value:", typeof this.value);
+  // console.log("name:", this.name);
+  // console.log("typeof name:", typeof this.name);
+  return clickDown.play();
+};
+let playUp = function () {
+  return clickUp.play();
+};
 let buttonsValue = document.querySelectorAll("button");
-buttonsValue.forEach((button) =>
-  button.addEventListener(
-    "pointerdown",
-    function () {
-      // console.log("value:", this.value);
-      // console.log("typeof value:", typeof this.value);
-      // console.log("name:", this.name);
-      // console.log("typeof name:", typeof this.name);
-      return clickDown.play();
-    },
-    button.addEventListener("pointerup", function () {
-      return clickUp.play();
-    })
-  )
-); // ======================================================================== */
+buttonsValue.forEach((button) => button.addEventListener("pointerdown", playDown));
+
+buttonsValue.forEach((button) => button.addEventListener("pointerup", playUp));
+
+window.addEventListener("keydown", playDown);
+window.addEventListener("keyup", playUp);
+// ======================================================================== */
 
 // [-] Displays number (as a string). Checks the length - RESOLVE LATER
 // [-] TODO - bugs when zero is clicked first.
@@ -207,8 +236,55 @@ buttonsValue.forEach((button) =>
 // [-] TODO Number input should have limited number of characters. Also should be rounded.
 // [+] TODO Check division by zero, create a function.
 
+// [-] TODO Sound feedback
+// [-] TODO Add plus/minus Button
+
 // PLAY WITH THE KEYBOARD
+let testArray = [];
 let keyPressed = function (e) {
-  return console.log(`${e.code}`);
+  // testArray.push(e.code.value);
+  console.log(e);
 };
 window.addEventListener("keydown", keyPressed);
+
+// ["Digit0", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9"];
+
+// [
+//   "Numpad0",
+//   "Numpad1",
+//   "Numpad2",
+//   "Numpad3",
+//   "Numpad4",
+//   "Numpad5",
+//   "Numpad5",
+//   "Numpad6",
+//   "Numpad7",
+//   "Numpad8",
+//   "Numpad9",
+// ];
+
+// ["NumpadDecimal", "Period", "Comma"];
+
+// ["NumpadEnter", "Enter", "Equal"];
+
+// ["Escape", "Backspace", "Delete"];
+
+// ["NumpadAdd", "NumpadSubtract", "NumpadMultiply", "NumpadDivide", "Minus", "Slash"];
+
+/* // POSITIVE NEGATIVE TEMPORARY NOT WORKING SOLUTION
+let charge = "+";
+let changeCharge = function () {
+  console.log("CHANGE CHARGE");
+  if (numberInput !== "" && numberInput !== "0") {
+    if (charge === "+") {
+      numberInput = "-" + numberInput;
+      charge = "-";
+      console.log(numberInput);
+    } else if (numberInput.startsWith("-")) {
+      numberInput = numberInput.slice(1);
+      charge = "+";
+      console.log(numberInput);
+    }
+    showNumbers(numberInput);
+  }
+}; */
