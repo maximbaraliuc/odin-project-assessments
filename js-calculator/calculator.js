@@ -3,11 +3,14 @@
 let numbersDisplay = document.querySelector(".number-display");
 let operatorsDisplay = document.querySelector(".operator-display");
 
-let numberInput = ""; // TODO - check if it possible to reduce
-let operatorInput = ""; // TODO - check if it possible to reduce
-
 let numberButtons = document.querySelectorAll(".number");
 let operatorButtons = document.querySelectorAll(".operator");
+let equalButton = document.querySelector("#equal");
+let allClearButton = document.querySelector("#all-clear");
+let backspaceButton = document.querySelector("#backspace");
+
+let numberInput = ""; // TODO - check if it possible to reduce
+let operatorInput = ""; // TODO - check if it possible to reduce
 
 // FUNCTIONS TO DISPLAY NUMBERS AND OPERATORS
 let populateNumbers = function (toDisplay) {
@@ -92,9 +95,17 @@ let returnOperator = function () {
   populateNumbers(operate.a);
 };
 
+let reset = function () {};
+let backspace = function () {};
+let equals = function () {};
+
 // ===========================================================================
 numberButtons.forEach((button) => button.addEventListener("click", returnValue));
 operatorButtons.forEach((button) => button.addEventListener("click", returnOperator));
+allClearButton.addEventListener("click", reset);
+backspaceButton.addEventListener("click", backspace);
+equalButton.addEventListener("click", equals);
+
 // ===========================================================================
 
 // SOUND FEEDBACK
