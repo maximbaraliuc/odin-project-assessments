@@ -61,6 +61,11 @@ let returnNumber = function () {
   if (numberInput === "0") {
     numberInput = "";
   }
+  // [-] TODO Check if is possible to not take into account the decimal point
+  // Limit display numbers
+  if (numberInput.length >= 10) {
+    return;
+  }
   numberInput += this.value;
   showNumbers(numberInput); // Populates the display with each number button push.
   operate.b = Number(numberInput); // Store the input as the second number. Ready for math calculations
@@ -210,6 +215,81 @@ plusMinusButton.addEventListener("click", changeCharge);
 
 // ===========================================================================
 
+// PLAY WITH THE KEYBOARD
+// ENABLE KEYBOARD INPUT.
+let keyboard = {
+  returnNumber: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+  returnOperator: ["+", "-", "*", "/"],
+  reset: ["Delete", "Escape", "Clear"],
+  backspace: ["Backspace"],
+  equals: ["Enter", "="],
+  addDecimal: [",", "."],
+};
+
+// switch (keyPressed) {
+//   case "returnNumber":
+//     returnNumber();
+//     break;
+
+//   case "returnOperator":
+//     returnOperator();
+//     break;
+
+//   case "reset":
+//     reset();
+//     break;
+
+//   case "backspace":
+//     backspace();
+//     break;
+
+//   case "equals":
+//     equals();
+//     break;
+
+//   case "addDecimal":
+//     addDecimal();
+//     break;
+
+//   default:
+//     break;
+// }
+
+// let testArray = [];
+let keyPressed = function (e) {
+  for (let props in keyboard) {
+    if (keyboard[props].includes(e.key)) {
+      console.log(props);
+    }
+  }
+  // console.log(e.key);
+};
+window.addEventListener("keydown", keyPressed);
+
+// ["Digit0", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9"];
+
+// [
+//   "Numpad0",
+//   "Numpad1",
+//   "Numpad2",
+//   "Numpad3",
+//   "Numpad4",
+//   "Numpad5",
+//   "Numpad5",
+//   "Numpad6",
+//   "Numpad7",
+//   "Numpad8",
+//   "Numpad9",
+// ];
+
+// ["NumpadDecimal", "Period", "Comma"];
+
+// ["NumpadEnter", "Enter", "Equal"];
+
+// ["Escape", "Backspace", "Delete"];
+
+// ["NumpadAdd", "NumpadSubtract", "NumpadMultiply", "NumpadDivide", "Minus", "Slash"];
+
 // SOUND FEEDBACK
 /* // Check the value and names on click TEMPORARY CODE =========================
 // Audio for key sounds
@@ -247,35 +327,3 @@ window.addEventListener("keyup", playUp);
 
 // [-] TODO Sound feedback
 // [-] TODO Add a plus/minus charge button
-
-// PLAY WITH THE KEYBOARD
-let testArray = [];
-let keyPressed = function (e) {
-  // testArray.push(e.code.value);
-  console.log(e);
-};
-window.addEventListener("keydown", keyPressed);
-
-// ["Digit0", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9"];
-
-// [
-//   "Numpad0",
-//   "Numpad1",
-//   "Numpad2",
-//   "Numpad3",
-//   "Numpad4",
-//   "Numpad5",
-//   "Numpad5",
-//   "Numpad6",
-//   "Numpad7",
-//   "Numpad8",
-//   "Numpad9",
-// ];
-
-// ["NumpadDecimal", "Period", "Comma"];
-
-// ["NumpadEnter", "Enter", "Equal"];
-
-// ["Escape", "Backspace", "Delete"];
-
-// ["NumpadAdd", "NumpadSubtract", "NumpadMultiply", "NumpadDivide", "Minus", "Slash"];
