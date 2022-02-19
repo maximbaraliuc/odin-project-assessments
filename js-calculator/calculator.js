@@ -39,19 +39,19 @@ let operate = {
   equal: null,
 
   add: function () {
-    return this.a + this.b;
+    return Math.round((this.a + this.b) * 1000) / 1000;
   },
   subtract: function () {
-    return this.a - this.b;
+    return Math.round((this.a - this.b) * 1000) / 1000;
   },
   multiply: function () {
-    return this.a * this.b;
+    return Math.round(this.a * this.b * 1000) / 1000;
   },
   divide: function () {
     if (this.b === 0) {
       return "Cannot divide by zero";
     }
-    return this.a / this.b;
+    return Math.round((this.a / this.b) * 1000) / 1000;
   },
 };
 
@@ -217,6 +217,7 @@ plusMinusButton.addEventListener("click", changeCharge);
 
 // PLAY WITH THE KEYBOARD
 // ENABLE KEYBOARD INPUT.
+
 let keyboard = {
   returnNumber: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
   returnOperator: ["+", "-", "*", "/"],
@@ -226,69 +227,43 @@ let keyboard = {
   addDecimal: [",", "."],
 };
 
-// switch (keyPressed) {
-//   case "returnNumber":
-//     returnNumber();
-//     break;
-
-//   case "returnOperator":
-//     returnOperator();
-//     break;
-
-//   case "reset":
-//     reset();
-//     break;
-
-//   case "backspace":
-//     backspace();
-//     break;
-
-//   case "equals":
-//     equals();
-//     break;
-
-//   case "addDecimal":
-//     addDecimal();
-//     break;
-
-//   default:
-//     break;
-// }
-
-// let testArray = [];
 let keyPressed = function (e) {
   for (let props in keyboard) {
     if (keyboard[props].includes(e.key)) {
-      console.log(props);
+      let keyGroup = props;
+      console.log(keyGroup);
+      switch (keyGroup) {
+        case "returnNumber":
+          returnNumber();
+          break;
+
+        case "returnOperator":
+          returnOperator();
+          break;
+
+        case "reset":
+          reset();
+          break;
+
+        case "backspace":
+          backspace();
+          break;
+
+        case "equals":
+          equals();
+          break;
+
+        case "addDecimal":
+          addDecimal();
+          break;
+
+        default:
+          break;
+      }
     }
   }
-  // console.log(e.key);
 };
 window.addEventListener("keydown", keyPressed);
-
-// ["Digit0", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9"];
-
-// [
-//   "Numpad0",
-//   "Numpad1",
-//   "Numpad2",
-//   "Numpad3",
-//   "Numpad4",
-//   "Numpad5",
-//   "Numpad5",
-//   "Numpad6",
-//   "Numpad7",
-//   "Numpad8",
-//   "Numpad9",
-// ];
-
-// ["NumpadDecimal", "Period", "Comma"];
-
-// ["NumpadEnter", "Enter", "Equal"];
-
-// ["Escape", "Backspace", "Delete"];
-
-// ["NumpadAdd", "NumpadSubtract", "NumpadMultiply", "NumpadDivide", "Minus", "Slash"];
 
 // SOUND FEEDBACK
 /* // Check the value and names on click TEMPORARY CODE =========================
