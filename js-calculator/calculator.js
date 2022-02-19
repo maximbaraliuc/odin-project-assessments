@@ -230,11 +230,9 @@ let keyboard = {
 };
 
 let keyPressed = function (e) {
-  console.log(e);
   for (let props in keyboard) {
     if (keyboard[props].includes(e.key)) {
       let keyGroup = props;
-      console.log(keyGroup);
       switch (keyGroup) {
         case "returnNumber":
           returnNumber(e);
@@ -259,7 +257,6 @@ let keyPressed = function (e) {
         case "addDecimal":
           addDecimal();
           break;
-          78;
 
         default:
           break;
