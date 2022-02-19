@@ -11,6 +11,8 @@
 let numbersDisplay = document.querySelector(".number-display");
 let operatorsDisplay = document.querySelector(".operator-display");
 
+// let allButtons = document.querySelectorAll("buttons");
+
 let numberButtons = document.querySelectorAll(".number");
 let operatorButtons = document.querySelectorAll(".operator");
 let equalButton = document.querySelector("#equal");
@@ -39,19 +41,19 @@ let operate = {
   equal: null,
 
   "+": function () {
-    return Math.round((this.a + this.b) * 1000) / 1000;
+    return Math.round((this.a + this.b) * 10000) / 10000;
   },
   "-": function () {
-    return Math.round((this.a - this.b) * 1000) / 1000;
+    return Math.round((this.a - this.b) * 10000) / 10000;
   },
   "*": function () {
-    return Math.round(this.a * this.b * 1000) / 1000;
+    return Math.round(this.a * this.b * 10000) / 10000;
   },
   "/": function () {
     if (this.b === 0) {
       return "Cannot divide by zero";
     }
-    return Math.round((this.a / this.b) * 1000) / 1000;
+    return Math.round((this.a / this.b) * 10000) / 10000;
   },
 };
 
@@ -74,10 +76,6 @@ let returnNumber = function (e) {
 };
 
 let returnOperator = function (e) {
-  console.log(e);
-  console.log(e.target.value);
-  console.log(e.key);
-  // console.log(operatorInput);
   // When the operator is clicked as a first button. Nothing changes.
   // [-] TODO Wait for the implementation of "=" and other rules and check if it possible to omit this "if" condition
   if (numberInput === "" && operate.mathOperator === null) {
@@ -164,7 +162,6 @@ let equals = function () {
     console.log("EQUAL SIGN ACTIVATED");
     numberInput = "";
     operate.a = operate[operate.mathOperator]();
-
     operate.equal = operate.a;
     showOperator(operatorInput);
     showNumbers(operate.a);
@@ -233,11 +230,11 @@ let keyboard = {
 };
 
 let keyPressed = function (e) {
-  // console.log(e);
+  console.log(e);
   for (let props in keyboard) {
     if (keyboard[props].includes(e.key)) {
       let keyGroup = props;
-      // console.log(keyGroup);
+      console.log(keyGroup);
       switch (keyGroup) {
         case "returnNumber":
           returnNumber(e);
@@ -256,12 +253,13 @@ let keyPressed = function (e) {
           break;
 
         case "equals":
-          equals();
+          equals(e);
           break;
 
         case "addDecimal":
           addDecimal();
           break;
+          78;
 
         default:
           break;
@@ -271,8 +269,7 @@ let keyPressed = function (e) {
 };
 window.addEventListener("keydown", keyPressed);
 
-// SOUND FEEDBACK
-// Check the value and names on click TEMPORARY CODE =========================
+// WORKING SIMPLE SOUND FEEDBACK =============================================
 // // Audio for key sounds
 // let clickDown = new Audio("audio/button-down.mp3");
 // let clickUp = new Audio("audio/button-up.mp3");
@@ -296,18 +293,23 @@ window.addEventListener("keydown", keyPressed);
 // window.addEventListener("keyup", playUp);
 // // ========================================================================
 
-// [+] Displays number (as a string). Checks the length - RESOLVE LATER
-// [+] TODO - bugs when zero is clicked first.
-// [-] TODO it is possible to simplify the function, and to reduce numberInput?????
-// [+] TODO check requirements for operation with zero. Mainly division.
-// [+] TODO correct when the numbers starts with zero but has no decimal point.
-// [-] TODO Refactoring. Variables names.
-// [-] TODO Check if the relation (operate.mathOperator operatorInput) can be simplified.
-// [-] TODO Number input should have limited number of characters. Also should be rounded.
-// [+] TODO Check division by zero, create a function.
-
 // [+] TODO Sound feedback
 // [+] TODO Add a plus/minus charge button
+
+// [+] Displays number (as a string). Checks the length - RESOLVE LATER
+// [+] TODO - bugs when zero is clicked first.
+// [+] TODO check requirements for operation with zero. Mainly division.
+// [+] TODO correct when the numbers starts with zero but has no decimal point.
+// [+] TODO Number input should have limited number of characters. Also should be rounded.
+// [+] TODO Check division by zero, create a function.
+// [-] TODO it is possible to simplify the function, and to reduce numberInput?????
+// [-] TODO Check if the relation (operate.mathOperator operatorInput) can be simplified.
+// [-] TODO Refactoring. Variables names.
+
+// [-] TODO BUG ENTER KEY WHEN PRESSED AFTER A BUTTON WAS CLICKED, REPEATS THE ACTION
+
+// ===========================================================================
+// KEYBOARD KEY.CODES
 
 // ["Digit0", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9"];
 
