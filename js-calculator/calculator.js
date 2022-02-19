@@ -1,5 +1,13 @@
 "use strict";
 
+// Works with user input - numberInput (string). numberInput uses always just the values obtained as a result of interaction with the calculator.
+// Can be reset. But never assigned a value from another variable.
+// Its value is displayed for the user.
+// numberInput is a string. It has to be transformed into a number when saved for math operations.
+// Almost always (when not empty) is stored by default as the second number for the 2 variables calculation (operate.b)
+// The state of the numberInput is very important here. Because a lot of conditions depend on the numberInput values or its state.
+// After each math operation numberInput value is again empty.
+
 let numbersDisplay = document.querySelector(".number-display");
 let operatorsDisplay = document.querySelector(".operator-display");
 
@@ -48,7 +56,7 @@ let operate = {
 };
 
 let returnNumber = function () {
-  console.log("DISPLAY THE INPUT NUMBER. SECOND VALUE READY TO BE USED.");
+  console.log("DISPLAY THE INPUT NUMBER. SECOND VALUE STORED, READY TO BE USED.");
   // Repair a bug when starting number is zero.
   if (numberInput === "0") {
     numberInput = "";
@@ -114,25 +122,26 @@ let reset = function () {
   showOperator("...");
 };
 
-//  BACKSPACE BUTTONs
+//  BACKSPACE BUTTON
 let backspace = function () {
   console.log("BACKSPACE IN PLACE");
-  let modifiedInput = numberInput.split("");
-  // console.table(modifiedInput, "BEFORE");
-  modifiedInput.pop();
-  // console.table(modifiedInput, "AFTER");
-  numberInput = modifiedInput.join("");
-  // Check if its a small enough negative number to remoce the minus.
-  if (numberInput.startsWith("-")) {
-    if (numberInput.length === 2 && numberInput.endsWith("0")) {
-      numberInput = "";
-    } else if (numberInput.length === 1) {
-      numberInput = "";
-    }
-  }
-  if (numberInput === "") {
+  if (numberInput === "" || numberInput === "0") {
+    return;
+  } else if (numberInput.length === 1) {
     // When deleting the last character.
     numberInput = "0";
+  } else {
+    let modifiedInput = numberInput.split("");
+    modifiedInput.pop();
+    numberInput = modifiedInput.join("");
+  }
+  // Check if its a small enough negative number to remove the minus sign.
+  if (numberInput.startsWith("-")) {
+    if (numberInput.length === 2 && numberInput.endsWith("0")) {
+      numberInput = "0";
+    } else if (numberInput.length === 1) {
+      numberInput = "0";
+    }
   }
   showNumbers(numberInput);
   operate.b = Number(numberInput);
@@ -174,10 +183,10 @@ let addDecimal = function () {
   }
 };
 
-// POSITIVE NEGATIVE
+// POSITIVE NEGATIVE CHARGE
 let changeCharge = function () {
   console.log("CHANGE CHARGE");
-  if (numberInput !== "" && numberInput !== "0" && numberInput !== "0.") {
+  if (numberInput !== "" && numberInput !== "0" /* && numberInput !== "0." */) {
     if (numberInput.startsWith("-")) {
       numberInput = numberInput.slice(1);
     } else {
@@ -237,7 +246,7 @@ window.addEventListener("keyup", playUp);
 // [+] TODO Check division by zero, create a function.
 
 // [-] TODO Sound feedback
-// [-] TODO Add plus/minus Button
+// [-] TODO Add a plus/minus charge button
 
 // PLAY WITH THE KEYBOARD
 let testArray = [];
@@ -270,21 +279,3 @@ window.addEventListener("keydown", keyPressed);
 // ["Escape", "Backspace", "Delete"];
 
 // ["NumpadAdd", "NumpadSubtract", "NumpadMultiply", "NumpadDivide", "Minus", "Slash"];
-
-/* // POSITIVE NEGATIVE TEMPORARY NOT WORKING SOLUTION
-let charge = "+";
-let changeCharge = function () {
-  console.log("CHANGE CHARGE");
-  if (numberInput !== "" && numberInput !== "0") {
-    if (charge === "+") {
-      numberInput = "-" + numberInput;
-      charge = "-";
-      console.log(numberInput);
-    } else if (numberInput.startsWith("-")) {
-      numberInput = numberInput.slice(1);
-      charge = "+";
-      console.log(numberInput);
-    }
-    showNumbers(numberInput);
-  }
-}; */
