@@ -35,8 +35,7 @@ body {
 
 .display {
   display: flex;
-  flex-flow: column;
-  align-items: flex-end;
+  justify-content: space-between;
   /* border: 1px solid grey; */
   /* width: 90%; */
   height: 50px;
