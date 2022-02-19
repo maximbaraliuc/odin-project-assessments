@@ -38,16 +38,16 @@ let operate = {
   mathOperator: null,
   equal: null,
 
-  add: function () {
+  "+": function () {
     return Math.round((this.a + this.b) * 1000) / 1000;
   },
-  subtract: function () {
+  "-": function () {
     return Math.round((this.a - this.b) * 1000) / 1000;
   },
-  multiply: function () {
+  "*": function () {
     return Math.round(this.a * this.b * 1000) / 1000;
   },
-  divide: function () {
+  "/": function () {
     if (this.b === 0) {
       return "Cannot divide by zero";
     }
@@ -55,7 +55,7 @@ let operate = {
   },
 };
 
-let returnNumber = function () {
+let returnNumber = function (e) {
   console.log("DISPLAY THE INPUT NUMBER. SECOND VALUE STORED, READY TO BE USED.");
   // Repair a bug when starting number is zero.
   if (numberInput === "0") {
@@ -66,13 +66,18 @@ let returnNumber = function () {
   if (numberInput.length >= 10) {
     return;
   }
-  numberInput += this.value;
+  // Connect the buttons and the keyboard
+  numberInput += e.type === "click" ? e.target.value : e.key;
   showNumbers(numberInput); // Populates the display with each number button push.
   operate.b = Number(numberInput); // Store the input as the second number. Ready for math calculations
   // return this.value;
 };
 
-let returnOperator = function () {
+let returnOperator = function (e) {
+  console.log(e);
+  console.log(e.target.value);
+  console.log(e.key);
+  // console.log(operatorInput);
   // When the operator is clicked as a first button. Nothing changes.
   // [-] TODO Wait for the implementation of "=" and other rules and check if it possible to omit this "if" condition
   if (numberInput === "" && operate.mathOperator === null) {
@@ -89,7 +94,7 @@ let returnOperator = function () {
       operate.equal = null;
     }
     // No number clicked.
-    operatorInput = this.value;
+    operatorInput = e.type === "click" ? e.target.value : e.key;
     operate.mathOperator = operatorInput;
     showOperator(operatorInput);
     return;
@@ -107,7 +112,7 @@ let returnOperator = function () {
     operate.a = operate[operate.mathOperator]();
   }
   // This portion runs in any case after the above "if, else if" conditions.
-  operatorInput = this.value;
+  operatorInput = e.type === "click" ? e.target.value : e.key;
   showOperator(operatorInput);
   numberInput = "";
   operate.mathOperator = operatorInput;
@@ -228,17 +233,18 @@ let keyboard = {
 };
 
 let keyPressed = function (e) {
+  // console.log(e);
   for (let props in keyboard) {
     if (keyboard[props].includes(e.key)) {
       let keyGroup = props;
-      console.log(keyGroup);
+      // console.log(keyGroup);
       switch (keyGroup) {
         case "returnNumber":
-          returnNumber();
+          returnNumber(e);
           break;
 
         case "returnOperator":
-          returnOperator();
+          returnOperator(e);
           break;
 
         case "reset":
@@ -290,15 +296,39 @@ window.addEventListener("keydown", playDown);
 window.addEventListener("keyup", playUp);
 // ======================================================================== */
 
-// [-] Displays number (as a string). Checks the length - RESOLVE LATER
-// [-] TODO - bugs when zero is clicked first.
+// [+] Displays number (as a string). Checks the length - RESOLVE LATER
+// [+] TODO - bugs when zero is clicked first.
 // [-] TODO it is possible to simplify the function, and to reduce numberInput?????
-// [-] TODO check requirements for operation with zero. Mainly division.
-// [-] TODO correct when the numbers starts with zero but has no decimal point.
+// [+] TODO check requirements for operation with zero. Mainly division.
+// [+] TODO correct when the numbers starts with zero but has no decimal point.
 // [-] TODO Refactoring. Variables names.
 // [-] TODO Check if the relation (operate.mathOperator operatorInput) can be simplified.
 // [-] TODO Number input should have limited number of characters. Also should be rounded.
 // [+] TODO Check division by zero, create a function.
 
-// [-] TODO Sound feedback
-// [-] TODO Add a plus/minus charge button
+// [+] TODO Sound feedback
+// [+] TODO Add a plus/minus charge button
+
+// ["Digit0", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9"];
+
+// [
+//   "Numpad0",
+//   "Numpad1",
+//   "Numpad2",
+//   "Numpad3",
+//   "Numpad4",
+//   "Numpad5",
+//   "Numpad5",
+//   "Numpad6",
+//   "Numpad7",
+//   "Numpad8",
+//   "Numpad9",
+// ];
+
+// ["NumpadDecimal", "Period", "Comma"];
+
+// ["NumpadEnter", "Enter", "Equal"];
+
+// ["Escape", "Backspace", "Delete"];
+
+// ["NumpadAdd", "NumpadSubtract", "NumpadMultiply", "NumpadDivide", "Minus", "Slash"];
