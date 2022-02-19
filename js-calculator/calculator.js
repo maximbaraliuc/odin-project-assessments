@@ -272,7 +272,7 @@ let keyPressed = function (e) {
 window.addEventListener("keydown", keyPressed);
 
 // SOUND FEEDBACK
-/* // Check the value and names on click TEMPORARY CODE =========================
+// Check the value and names on click TEMPORARY CODE =========================
 // Audio for key sounds
 let clickDown = new Audio("audio/button-down.mp3");
 let clickUp = new Audio("audio/button-up.mp3");
@@ -294,7 +294,7 @@ buttonsValue.forEach((button) => button.addEventListener("pointerup", playUp));
 
 window.addEventListener("keydown", playDown);
 window.addEventListener("keyup", playUp);
-// ======================================================================== */
+// ========================================================================
 
 // [+] Displays number (as a string). Checks the length - RESOLVE LATER
 // [+] TODO - bugs when zero is clicked first.
