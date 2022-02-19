@@ -273,28 +273,28 @@ window.addEventListener("keydown", keyPressed);
 
 // SOUND FEEDBACK
 // Check the value and names on click TEMPORARY CODE =========================
-// Audio for key sounds
-let clickDown = new Audio("audio/button-down.mp3");
-let clickUp = new Audio("audio/button-up.mp3");
+// // Audio for key sounds
+// let clickDown = new Audio("audio/button-down.mp3");
+// let clickUp = new Audio("audio/button-up.mp3");
 
-let playDown = function () {
-  // console.log("value:", this.value);
-  // console.log("typeof value:", typeof this.value);
-  // console.log("name:", this.name);
-  // console.log("typeof name:", typeof this.name);
-  return clickDown.play();
-};
-let playUp = function () {
-  return clickUp.play();
-};
-let buttonsValue = document.querySelectorAll("button");
-buttonsValue.forEach((button) => button.addEventListener("pointerdown", playDown));
+// let playDown = function () {
+//   // console.log("value:", this.value);
+//   // console.log("typeof value:", typeof this.value);
+//   // console.log("name:", this.name);
+//   // console.log("typeof name:", typeof this.name);
+//   return clickDown.play();
+// };
+// let playUp = function () {
+//   return clickUp.play();
+// };
+// let buttonsValue = document.querySelectorAll("button");
+// buttonsValue.forEach((button) => button.addEventListener("pointerdown", playDown));
 
-buttonsValue.forEach((button) => button.addEventListener("pointerup", playUp));
+// buttonsValue.forEach((button) => button.addEventListener("pointerup", playUp));
 
-window.addEventListener("keydown", playDown);
-window.addEventListener("keyup", playUp);
-// ========================================================================
+// window.addEventListener("keydown", playDown);
+// window.addEventListener("keyup", playUp);
+// // ========================================================================
 
 // [+] Displays number (as a string). Checks the length - RESOLVE LATER
 // [+] TODO - bugs when zero is clicked first.
