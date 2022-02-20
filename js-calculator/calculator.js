@@ -11,8 +11,6 @@
 let numbersDisplay = document.querySelector(".number-display");
 let operatorsDisplay = document.querySelector(".operator-display");
 
-// let allButtons = document.querySelectorAll("buttons");
-
 let numberButtons = document.querySelectorAll(".number");
 let operatorButtons = document.querySelectorAll(".operator");
 let equalButton = document.querySelector("#equal");
@@ -57,7 +55,7 @@ let operate = {
   },
 };
 
-let returnNumber = function (e) {
+let returnNumber = function () {
   console.log("DISPLAY THE INPUT NUMBER. SECOND VALUE STORED, READY TO BE USED.");
   // Repair a bug when starting number is zero.
   if (numberInput === "0") {
@@ -69,13 +67,14 @@ let returnNumber = function (e) {
     return;
   }
   // Connect the buttons and the keyboard
-  numberInput += e.type === "click" ? e.target.value : e.key;
+
+  numberInput += this.value;
   showNumbers(numberInput); // Populates the display with each number button push.
   operate.b = Number(numberInput); // Store the input as the second number. Ready for math calculations
   // return this.value;
 };
 
-let returnOperator = function (e) {
+let returnOperator = function () {
   // When the operator is clicked as a first button. Nothing changes.
   // [-] TODO Wait for the implementation of "=" and other rules and check if it possible to omit this "if" condition
   if (numberInput === "" && operate.mathOperator === null) {
@@ -92,7 +91,7 @@ let returnOperator = function (e) {
       operate.equal = null;
     }
     // No number clicked.
-    operatorInput = e.type === "click" ? e.target.value : e.key;
+    operatorInput = this.value;
     operate.mathOperator = operatorInput;
     showOperator(operatorInput);
     return;
@@ -110,7 +109,7 @@ let returnOperator = function (e) {
     operate.a = operate[operate.mathOperator]();
   }
   // This portion runs in any case after the above "if, else if" conditions.
-  operatorInput = e.type === "click" ? e.target.value : e.key;
+  operatorInput = this.value;
   showOperator(operatorInput);
   numberInput = "";
   operate.mathOperator = operatorInput;
@@ -220,51 +219,51 @@ plusMinusButton.addEventListener("click", changeCharge);
 // PLAY WITH THE KEYBOARD
 // ENABLE KEYBOARD INPUT.
 
-let keyboard = {
-  returnNumber: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-  returnOperator: ["+", "-", "*", "/"],
-  reset: ["Delete", "Escape", "Clear"],
-  backspace: ["Backspace"],
-  equals: ["Enter", "="],
-  addDecimal: [",", "."],
-};
+// let keyboard = {
+//   returnNumber: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+//   returnOperator: ["+", "-", "*", "/"],
+//   reset: ["Delete", "Escape", "Clear"],
+//   backspace: ["Backspace"],
+//   equals: ["Enter", "="],
+//   addDecimal: [",", "."],
+// };
 
-let keyPressed = function (e) {
-  for (let props in keyboard) {
-    if (keyboard[props].includes(e.key)) {
-      let keyGroup = props;
-      switch (keyGroup) {
-        case "returnNumber":
-          returnNumber(e);
-          break;
+// let keyPressed = function (e) {
+//   for (let props in keyboard) {
+//     if (keyboard[props].includes(e.key)) {
+//       let keyGroup = props;
+//       switch (keyGroup) {
+//         case "returnNumber":
+//           returnNumber(e);
+//           break;
 
-        case "returnOperator":
-          returnOperator(e);
-          break;
+//         case "returnOperator":
+//           returnOperator(e);
+//           break;
 
-        case "reset":
-          reset();
-          break;
+//         case "reset":
+//           reset();
+//           break;
 
-        case "backspace":
-          backspace();
-          break;
+//         case "backspace":
+//           backspace();
+//           break;
 
-        case "equals":
-          equals(e);
-          break;
+//         case "equals":
+//           equals(e);
+//           break;
 
-        case "addDecimal":
-          addDecimal();
-          break;
+//         case "addDecimal":
+//           addDecimal();
+//           break;
 
-        default:
-          break;
-      }
-    }
-  }
-};
-window.addEventListener("keydown", keyPressed);
+//         default:
+//           break;
+//       }
+//     }
+//   }
+// };
+// window.addEventListener("keydown", keyPressed);
 
 // WORKING SIMPLE SOUND FEEDBACK =============================================
 // // Audio for key sounds
