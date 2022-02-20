@@ -38,16 +38,16 @@ let operate = {
   mathOperator: null,
   equal: null,
 
-  "+": function () {
+  add: function () {
     return Math.round((this.a + this.b) * 10000) / 10000;
   },
-  "-": function () {
+  subtract: function () {
     return Math.round((this.a - this.b) * 10000) / 10000;
   },
-  "*": function () {
+  multiply: function () {
     return Math.round(this.a * this.b * 10000) / 10000;
   },
-  "/": function () {
+  divide: function () {
     if (this.b === 0) {
       return "Cannot divide by zero";
     }
@@ -61,6 +61,9 @@ let returnNumber = function () {
   if (numberInput === "0") {
     numberInput = "";
   }
+  // If the number is entered directly after equal. BROKEN
+  // if (operate.equal !== null) {
+  // }
   // [-] TODO Check if is possible to not take into account the decimal point
   // Limit display numbers
   if (numberInput.length >= 10) {
@@ -216,8 +219,8 @@ plusMinusButton.addEventListener("click", changeCharge);
 
 // ===========================================================================
 
-// PLAY WITH THE KEYBOARD
-// ENABLE KEYBOARD INPUT.
+// PLAY WITH THE KEYBOARD - AT THIS MOMENT CAUSE BUGS - THE RESULTS ARE INCONSISTENT WHEN ENABLED
+// ENABLE KEYBOARD INPUT. NEEDS TO CHANGE NUMBER AND OPERATOR INPUT FOR "THIS.VALUE"
 
 // let keyboard = {
 //   returnNumber: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
@@ -303,6 +306,7 @@ plusMinusButton.addEventListener("click", changeCharge);
 // [-] TODO Refactoring. Variables names.
 
 // [-] TODO BUG ENTER KEY WHEN PRESSED AFTER A BUTTON WAS CLICKED, REPEATS THE ACTION
+// [-] TODO KEYBOARD INPUT NOT WORKING PROPERLY
 
 // ===========================================================================
 // KEYBOARD KEY.CODES
