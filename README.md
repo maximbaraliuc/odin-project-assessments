@@ -2,7 +2,7 @@
 
 ## THE ODIN PROJECT
 
-_A great, free and community based project for coding education and learning web development.
+_A great, free and community based resource for coding education and learning web development.
 The curriculum is project based._
 
 ---
