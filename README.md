@@ -11,7 +11,7 @@ This repository contains [**my solutions**](https://maximbaraliuc.github.io/odin
 
 ### Foundations path projects:
 
-- [**Projects homepage**](https://maximbaraliuc.github.io/odin-project-assessments/odin-landing-page/index.html)
+- [**Projects homepage**](https://maximbaraliuc.github.io/odin-project-assessments/)
 - Landing Page [View Code](https://github.com/maximbaraliuc/odin-project-assessments/tree/main/odin-landing-page) [**Live Preview**](https://maximbaraliuc.github.io/odin-project-assessments/odin-landing-page/index.html)
 - Rock Paper Scissors [View Code](https://github.com/maximbaraliuc/odin-project-assessments/tree/main/js-rock-paper-scissors) [**Live Preview**](https://maximbaraliuc.github.io/odin-project-assessments/js-rock-paper-scissors/index.html)
 - Etch A Sketch [View Code](https://github.com/maximbaraliuc/odin-project-assessments/tree/main/js-etch-a-sketch) [**Live Preview**](https://maximbaraliuc.github.io/odin-project-assessments/js-etch-a-sketch/index.html)
