@@ -2,6 +2,11 @@
 
 ## THE ODIN PROJECT
 
+_A great, free and community based project for coding education and learning web development.
+The curriculum is project based._
+
+---
+
 This repository contains [**my solutions**](https://maximbaraliuc.github.io/odin-project-assessments/) for the projects that were done following the [paths](https://www.theodinproject.com/paths) on [THE ODIN PROJECT](https://www.theodinproject.com)
 
 ### Foundations path projects:
