@@ -7,7 +7,7 @@ The curriculum is project based._
 
 ---
 
-This repository contains [**my solutions**](https://maximbaraliuc.github.io/odin-project-assessments/) to the projects that were done following the [paths](https://www.theodinproject.com/paths) on [THE ODIN PROJECT](https://www.theodinproject.com)
+This repository contains my solutions to the projects that were done following [THE ODIN PROJECT](https://www.theodinproject.com)
 
 ### Foundations path projects:
 
