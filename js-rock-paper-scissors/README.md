@@ -2,4 +2,4 @@
 
 An JavaScript assignment. [The task](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/rock-paper-scissors) was to make a simple implementation of grade-school classic “rock paper scissors” and to create the UI for it.
 
-[**Projects homepage**](https://maximbaraliuc.github.io/odin-project-assessments/odin-landing-page/index.html) with the assignments live previews.
+[**Projects homepage**](https://maximbaraliuc.github.io/odin-project-assessments/) with the assignments live previews.
