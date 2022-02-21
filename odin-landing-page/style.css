@@ -1,101 +1,92 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 body {
+  /* box-sizing: border-box; */
+  /* display: flex; */
+  /* flex-flow: column wrap; */
   margin: 0 auto;
   font-family: "Roboto", sans-serif;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
 }
 ul,
 li {
-  padding: 0;
   margin: 0;
+  padding: 0;
   list-style-type: none;
 }
 
-/* ============================== */
-/* FIRST BLOCK                    */
-/* ============================== */
+/**
+ * #.# FIRST BLOCK
+ *
+ * Navigation menu and sign up button
+ */
 
 .first-block {
-  background-color: #1f2937;
-  color: #f9faf8;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-self: center;
+  flex-grow: 1;
+  background-color: #1f2937;
+  color: #f9faf8;
 }
-
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 1000px;
-  margin: auto;
+  margin: 0 auto;
   margin-top: 20px;
 }
 .logo {
   font-size: 24px;
   font-weight: 700;
 }
-
 .nav-menu {
   display: flex;
-  gap: 30px;
+  column-gap: 30px;
 }
-
-.nav-menu li,
-a {
+.nav-menu a {
   text-decoration: none;
   color: #e5e7eb;
   font-size: 18px;
 }
-
-/* ========================================= */
-/* ========================================= */
-
 .first-block-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   width: 1000px;
   margin: 120px auto;
-  /* border: 3px solid red; */
 }
-
 .first-block-header {
   font-size: 48px;
   font-weight: bolder;
-  /* color: #f9faf8; */
 }
 .first-block-text {
   font-size: 18px;
   color: #e5e7eb;
 }
 .first-block-button {
+  border: none;
+  border-radius: 5px;
+  margin-block: 10px;
+  padding: 8px 35px;
   background-color: #3882f6;
+  color: #e5e7eb;
   font-size: 18px;
   font-weight: bold;
-  color: #e5e7eb;
-  border: 0;
-  border-radius: 5px;
-  padding: 8px 35px;
-  margin-block: 10px;
 }
-
 .first-block-content > img {
   width: 100%;
 }
 
-/* ============================== */
-/* SECOND BLOCK                   */
-/* ============================== */
+/**
+* #.# SECOND BLOCK
+*
+* Section with images
+*/
 
 .second-block {
   text-align: center;
 }
-
 .second-block h2 {
   font-size: 36px;
   font-weight: bold;
@@ -103,96 +94,98 @@ a {
 .second-block-cards {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  column-gap: 40px;
   padding-bottom: 100px;
 }
-
-.second-block-onecard {
+.second-block-one-card {
   width: 150px;
 }
-.second-block-onecard img {
+.second-block-one-card img {
   width: 100%;
   border: 5px solid #3882f6;
   border-radius: 15px;
 }
-.second-block-onecard p {
+.second-block-one-card p {
   margin-top: 5px;
 }
 
-/* ============================== */
-/* THIRD BLOCK                    */
-/* ============================== */
+/**
+ * #.# THIRD BLOCK
+ *
+ * Section with the quote
+ */
 
 .third-block {
-  box-sizing: content-box;
-  background-color: #e5e7eb;
   padding: 100px;
+  background-color: #e5e7eb;
   color: #1f2937;
-  /* margin: 0 auto; */
 }
 .third-block-blockquote {
-  width: 800px;
+  width: 850px;
   margin: 0 auto;
 }
-
 .third-block-quote {
   font-size: 36px;
   font-weight: 300;
+  text-align: justify;
   font-style: italic;
 }
-
 .third-block-quote-author {
   text-align: right;
-  padding-right: 100px;
-  font-weight: 600;
   font-size: 18px;
+  font-weight: 600;
 }
+/**
+ * #.# FOURTH BLOCK
+ *
+ * Sign up area.
+ */
 
-/* ============================== */
-/* FOURTH BLOCK                   */
-/* ============================== */
-
-.fourth-block-box {
-  background-color: #3882f6;
-  color: #f9faf8;
+.fourth-block {
   width: 1000px;
-  padding: 50px 100px;
   margin: 100px auto;
-  border-radius: 10px;
+}
+.fourth-block-box {
   display: flex;
   justify-content: space-between;
+  padding: 50px 100px;
+  border-radius: 10px;
+  background-color: #3882f6;
+  color: #f9faf8;
 }
 
 .fourth-block-button {
-  background-color: #3882f6;
-  font-size: 18px;
-  font-weight: bold;
-  color: #f9faf8;
   border: 2px solid #f9faf8;
   border-radius: 7px;
   padding: 8px 35px;
   margin-block: 10px;
+  background-color: #3882f6;
+  color: #f9faf8;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .fourth-block-text p:first-child {
+  margin: 0;
   font-size: 18px;
   font-weight: 800;
-  margin: 0;
 }
 
 .fourth-block-text p:last-child {
   margin: 0;
 }
+/**
+ * #.# FOOTER BLOCK
+ *
+ *
+ */
 
-/* ============================== */
-/* FOOTER BLOCK                   */
-/* ============================== */
 footer {
   background-color: #1f2937;
-  color: #e5e7eb;
 }
-
 footer p {
+  margin: 0;
+  padding: 40px;
   text-align: center;
-  margin-block: 40px;
+  color: #e5e7eb;
 }
