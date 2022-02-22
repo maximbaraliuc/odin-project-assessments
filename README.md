@@ -1,4 +1,5 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/0b98b343-0401-4e08-b13d-29a788f4348c/deploy-status)](https://app.netlify.com/sites/odin-project-assessments/deploys)
+![Foundations Path](https://img.shields.io/badge/foundations-complete-succes?style=flat-square)
+![Full Stack JavaScript Path](https://img.shields.io/badge/full%20stack%20javascript-in%20progress-red?style=flat-square)
 
 ## THE ODIN PROJECT
 
