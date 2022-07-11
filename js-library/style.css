@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@400;500;600;700&display=swap");
+
+/* font-family: 'Libre Baskerville', serif; */
+/* font-family: 'Open Sans', sans-serif; */
+
+:root {
+  --width-main: 1024px;
+}
+* {
+  background-color: hsla(212, 48%, 21%, 0.05);
+}
+
+button {
+  border: unset;
+  background-color: salmon;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  width: var(--width-main);
+  margin-inline: auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+header > *:not(button) {
+  background-color: hsla(160, 47%, 21%, 0.05);
+}
+
+#title {
+  font-size: 3rem;
+}
+
+.statistics ul {
+  display: flex;
+}
+
+.statistics li {
+  display: inline-block;
+}
+
+.submit-form {
+  position: absolute;
+  top: 700px;
+}
+
+.shelf {
+  display: flex;
+  gap: 10px;
+}
+
+.book-card {
+  border: 1px solid black;
+}
