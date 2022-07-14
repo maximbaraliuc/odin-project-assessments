@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
   <link rel="stylesheet" href="style.css">
   <script src="https://kit.fontawesome.com/4e41c7d293.js" crossorigin="anonymous"></script>
   <title>Library</title>
@@ -14,7 +14,7 @@
 <body>
 
   <header>
-    <span id="title">Library</span>
+    <span id="title">* Library</span>
 
     <div class="statistics">
       <ul id="total">
@@ -28,55 +28,45 @@
       </ul>
     </div>
 
-    <!-- <i class="fa-solid fa-xmark"></i> -->
-    <button id="new-book" name="new-book" type="button"><i class="fa-solid fa-plus"></i> New</button>
-
+    <button id="new-book" name="new-book" type="button">
+      <!-- <i class="fa-solid fa-plus"></i> -->+ New Book
+    </button>
 
   </header>
 
   <main>
 
-    <article class="submit-form">
-      <form action="">
-        <div>
-          <label for="book-title">Title</label>
-          <input type="text" name="book-title" id="book-title" placeholder="The Book" required>
-        </div>
+    <article class="form-container"">
+      <form action=" #">
+      <div>
+        <label for="book-title">Title</label>
+        <input type="text" name="book-title" id="book-title" placeholder="The Book" required>
+      </div>
 
-        <div>
-          <label for="book-author">Author</label>
-          <input type="text" name="book-author" id="book-author" placeholder="John K. Doe" required>
-        </div>
+      <div>
+        <label for="book-author">Author</label>
+        <input type="text" name="book-author" id="book-author" placeholder="John K. Doe" required>
+      </div>
 
-        <div>
-          <label for="book-pages">Pages</label>
-          <input type="number" name="book-pages" id="book-pages" min="1" max="99999" required>
-        </div>
+      <div>
+        <label for="book-pages">Pages</label>
+        <input type="number" name="book-pages" id="book-pages" min="1" max="99999" required>
+      </div>
 
-        <button type="submit">add book</button>
+      <div>
+        <label for="book-read">Already Read</label>
+        <input type="checkbox" id="book-read">
+      </div>
+
+      <button type="reset">reset</button>
+      <button type="submit" id="submit-btn">add book</button>
       </form>
 
-      <div class="close-submit-card"> <i class="fa-solid fa-xmark"></i> </div>
+      <div class="close-submit-card"><i class="fa-solid fa-xmark"></i></div>
     </article>
 
+    <!-- Content for the shelf provided through javascript -->
     <article class="shelf">
-      <div class="book-card">
-        <div class="book-title">Pandora's Star</div>
-        <div class="book-author">Peter F. Hamilton</div>
-        <div class="book-pages">988</div>
-      </div>
-
-      <div class="book-card">
-        <div class="book-title">Pandora's Star</div>
-        <div class="book-author">Peter F. Hamilton</div>
-        <div class="book-pages">988</div>
-      </div>
-
-      <div class="book-card">
-        <div class="book-title">Pandora's Star</div>
-        <div class="book-author">Peter F. Hamilton</div>
-        <div class="book-pages">988</div>
-      </div>
     </article>
 
 

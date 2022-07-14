@@ -13,12 +13,13 @@
 button {
   border: unset;
   background-color: salmon;
+  cursor: pointer;
 }
 
 body {
   font-family: "Open Sans", sans-serif;
   margin: 0;
-  width: var(--width-main);
+  max-width: var(--width-main);
   margin-inline: auto;
 }
 
@@ -33,6 +34,7 @@ header > *:not(button) {
 
 #title {
   font-size: 3rem;
+  margin-right: auto;
 }
 
 .statistics ul {
@@ -43,16 +45,45 @@ header > *:not(button) {
   display: inline-block;
 }
 
-.submit-form {
-  position: absolute;
-  top: 700px;
-}
-
 .shelf {
   display: flex;
-  gap: 10px;
+  /* justify-content: center; */
+  gap: 5px;
+  flex-wrap: wrap;
 }
 
 .book-card {
+  position: relative;
   border: 1px solid black;
+  min-width: 200px;
+  max-width: 300px;
+  height: 150px;
+  flex: 1;
+}
+
+.form-container {
+  display: none;
+}
+.form-container.on {
+  display: block;
+}
+/* .submit-form {
+  position: absolute;
+  top: 700px;
+} */
+button.close-card {
+  display: block;
+  /* position: absolute; */
+  top: 5px;
+  right: 5px;
+  /* font-size: 4rem; */
+  height: 50px;
+}
+
+button.close-card.off {
+  display: none;
+}
+
+.close-submit-card {
+  cursor: pointer;
 }
