@@ -5,76 +5,50 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
   <script src="script.js" defer></script>
   <link rel="stylesheet" href="style.css">
-  <script src="https://kit.fontawesome.com/4e41c7d293.js" crossorigin="anonymous"></script>
   <title>Library</title>
 </head>
 
 <body>
-
   <header>
-    <span id="title">* Library</span>
-
-    <div class="statistics">
-      <ul id="total">
-        <li>books total &nbsp;</li>
-        <li id="books-total">0</li>
-      </ul>
-
-      <ul id="read">
-        <li>books read &nbsp;</li>
-        <li id="books-read">0</li>
-      </ul>
+    <div class="header-container"> <img src="logo-library.png" width="64px" alt="library's logo"> <span id="title">
+        Library</span>
+      <div class="statistics">
+        <ul id="total">
+          <li>books total &nbsp;</li>
+          <li id="books-total"></li>
+        </ul>
+        <ul id="read">
+          <li>books read &nbsp;</li>
+          <li id="books-read"></li>
+        </ul>
+      </div> <button id="new-book" name="new-book" type="button">+ new book</button>
     </div>
-
-    <button id="new-book" name="new-book" type="button">
-      <!-- <i class="fa-solid fa-plus"></i> -->+ New Book
-    </button>
-
   </header>
 
   <main>
-
-    <article class="form-container"">
-      <form action=" #">
-      <div>
-        <label for="book-title">Title</label>
-        <input type="text" name="book-title" id="book-title" placeholder="The Book" required>
-      </div>
-
-      <div>
-        <label for="book-author">Author</label>
-        <input type="text" name="book-author" id="book-author" placeholder="John K. Doe" required>
-      </div>
-
-      <div>
-        <label for="book-pages">Pages</label>
-        <input type="number" name="book-pages" id="book-pages" min="1" max="99999" required>
-      </div>
-
-      <div>
-        <label for="book-read">Already Read</label>
-        <input type="checkbox" id="book-read">
-      </div>
-
-      <button type="reset">reset</button>
-      <button type="submit" id="submit-btn">add book</button>
+    <article class="form-container">
+      <form action="#">
+        <div class="form-title">Add a New Book</div>
+        <div class="book-title"> <label for="book-title">Title</label> <input type="text" name="book-title"
+            id="book-title" placeholder="The Book" required> </div>
+        <div class="book-author"> <label for="book-author">Author</label> <input type="text" name="book-author"
+            id="book-author" placeholder="John K. Doe" required> </div>
+        <div class="book-pages"> <label for="book-pages">Pages</label> <input type="number" name="book-pages"
+            id="book-pages" min="1" max="99999" required> </div>
+        <div class="book-read"> <label for="book-read">Read</label> <input type="checkbox" id="book-read"> </div>
+        <div class="form-btn-container"> <button type="reset" id="reset-btn">reset</button> <button type="submit"
+            id="submit-btn">add book</button> </div> <img class="close-submit-card" src="close.svg" alt="close icon">
       </form>
-
-      <div class="close-submit-card"><i class="fa-solid fa-xmark"></i></div>
     </article>
 
-    <!-- Content for the shelf provided through javascript -->
     <article class="shelf">
+      <!-- Content for the shelf provided through javascript -->
     </article>
-
-
   </main>
-
-  <footer>
-  </footer>
-
+  <footer> </footer>
 </body>
 
 </html>

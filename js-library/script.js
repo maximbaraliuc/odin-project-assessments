@@ -3,18 +3,20 @@
 // SHELF, BOOKS-LIST and BOOK-CARDS
 // ============================================================================
 
+// This is a saved library to populate the screen for the first time.
 let myLibrary = [
-  { title: "Laws of UX", author: "Jon Yablonski", pages: "138", read: false },
-  { title: "Revelation Space", author: "Alastair Reynolds", pages: "567", read: false },
-  { title: "Pandora's Star", author: "Peter F. Hamilton", pages: "988", read: false },
-  { title: "Diamond Age", author: "Neal Stephenson", pages: "752", read: true },
-  { title: "How to Read a Book", author: "Mortimer Adler", pages: "238", read: false },
+  { title: "Laws of UX", author: "Jon Yablonski", pages: "138", isRead: true },
+  { title: "Revelation Space", author: "Alastair Reynolds", pages: "567", isRead: true },
+  { title: "Pandora's Star", author: "Peter F. Hamilton", pages: "988", isRead: false },
+  { title: "Diamond Age", author: "Neal Stephenson", pages: "752", isRead: true },
+  { title: "How to Read a Book", author: "Mortimer Adler", pages: "238", isRead: false },
 ];
 
 // let myLibrary = [];
 
 // Check if there is a version of "myLibrary" stored locally.
 const localLibrary = localStorage.getItem("libraryBooks");
+
 if (localLibrary) {
   myLibrary = JSON.parse(localLibrary);
 }
@@ -33,7 +35,7 @@ class Book {
     this.isRead = isRead;
   }
   description() {
-    console.log(`${this.title} by ${this.author} has ${this.pages} pages. Was the book read? ${this.read}`);
+    console.log(`${this.title} by ${this.author} has ${this.pages} pages. Was the book read? ${this.isRead}`);
   }
 }
 
@@ -53,13 +55,19 @@ function createCard(book) {
   const cardPages = document.createElement("div");
   cardPages.classList.add("card-pages");
   const cardDelete = deleteBtn();
-  const cardRead = readBtn(book.read);
+  const cardRead = readBtn(book.isRead);
+  console.log("======================================");
+  console.log(book.isRead);
+  console.log(cardRead);
 
+  if (book.isRead) {
+    cardBook.classList.add("read");
+  }
   cardTitle.innerText = `${book.title}`;
   cardAuthor.innerText = `${book.author}`;
   cardPages.innerText = `${book.pages}`;
-
   cardBtnContainer.append(cardDelete, cardRead);
+
   //  Create the card
   cardBook.append(cardTitle, cardAuthor, cardPages, cardBtnContainer);
   shelf.append(cardBook);
@@ -70,12 +78,15 @@ function createCard(book) {
 
 function addBook() {
   // Create the book object first
-  let title = document.querySelector("#book-title").value;
+  // Remove whitespace if any.
+  let title = document.querySelector("#book-title").value.replace(/^\s+|\s+$/gm, "");
   let author = document.querySelector("#book-author").value;
   let pages = document.querySelector("#book-pages").value;
-  let readStatus = document.querySelector("#book-read").checked;
-  let newBook = new Book(title, author, pages, readStatus);
+  let isRead = document.querySelector("#book-read").checked;
+  let newBook = new Book(title, author, pages, isRead);
 
+  console.log("add book object");
+  console.log(isRead);
   // Update the library lists and the DOM
   myLibrary.push(newBook);
   localStorage.setItem("libraryBooks", JSON.stringify(myLibrary));
@@ -88,7 +99,7 @@ function addBook() {
 // Create some DOM nodes and support function
 
 function deleteBtn() {
-  let deleteBtn = document.createElement("button");
+  let deleteBtn = document.createElement("div");
   deleteBtn.classList.add("close-card", "card-button");
   deleteBtn.innerText = "delete";
   deleteBtn.addEventListener("click", deleteCard);
@@ -101,7 +112,7 @@ function deleteCard() {
   //  Find the index for myLibrary when the titles are matching.
   //  TODO Add more verifications (author, isbn, ...)
   for (let index = 0; index < myLibrary.length; index++) {
-    if (this.parentNode.childNodes[0].innerText === myLibrary[index].title) {
+    if (this.parentNode.parentNode.childNodes[0].innerText === myLibrary[index].title) {
       toDeleteIndex = index;
     }
   }
@@ -109,13 +120,13 @@ function deleteCard() {
   //  Delete and update the DOM, local list and storage
   myLibrary.splice(toDeleteIndex, 1);
   localStorage.setItem("libraryBooks", JSON.stringify(myLibrary));
-  this.parentNode.remove();
+  this.parentNode.parentNode.remove();
   totalDisplay.innerText = `${myLibrary.length}`;
   readDisplay.innerText = `${updateRead()}`;
 }
 
 function readBtn(read) {
-  let readBtn = document.createElement("button");
+  let readBtn = document.createElement("div");
   readBtn.classList.add("read-card", "card-button");
   if (read) {
     readBtn.innerText = "read";
@@ -131,21 +142,21 @@ function readCard() {
   this.classList.toggle("read");
   if (this.innerText === "read") {
     this.innerText = "unread";
-    this.parentNode.classList.remove("read");
+    this.parentNode.parentNode.classList.remove("read");
   } else {
     this.innerText = "read";
-    this.parentNode.classList.add("read");
+    this.parentNode.parentNode.classList.add("read");
   }
-
+  console.log(this.parentNode.parentNode);
   //  Find the index for myLibrary when the titles are matching.
   // And change and push the read status
   //  TODO Add more verifications (author, isbn, ...)
   for (let index = 0; index < myLibrary.length; index++) {
-    if (this.parentNode.childNodes[0].innerText === myLibrary[index].title) {
+    if (this.parentNode.parentNode.childNodes[0].innerText === myLibrary[index].title) {
       if (this.classList.contains("read")) {
-        myLibrary[index].read = true;
+        myLibrary[index].isRead = true;
       } else {
-        myLibrary[index].read = false;
+        myLibrary[index].isRead = false;
       }
     }
   }
@@ -159,16 +170,21 @@ function readCard() {
 
 const newBookButton = document.querySelector("#new-book");
 const formCloseButton = document.querySelector(".close-submit-card");
+const formCard = document.querySelector("form");
 const formContainer = document.querySelector(".form-container");
 const totalDisplay = document.querySelector("#books-total");
 const readDisplay = document.querySelector("#books-read");
 
-newBookButton.addEventListener("click", () => {
+function closeForm(e) {
+  e.stopPropagation();
   formContainer.classList.toggle("on");
-});
+}
 
-formCloseButton.addEventListener("click", () => {
-  formContainer.classList.toggle("on");
+newBookButton.addEventListener("click", closeForm);
+formCloseButton.addEventListener("click", closeForm);
+formContainer.addEventListener("click", closeForm);
+formCard.addEventListener("click", (e) => {
+  e.stopPropagation();
 });
 
 totalDisplay.innerText = `${myLibrary.length}`;
@@ -177,9 +193,10 @@ readDisplay.innerText = `${updateRead()}`;
 function updateRead() {
   let booksRead = 0;
   for (let book of myLibrary) {
+    console.log("updateread ==============");
     console.log(book);
-    console.log(book.read);
-    if (book.read) {
+    console.log(book.isRead);
+    if (book.isRead) {
       booksRead += 1;
     }
   }
