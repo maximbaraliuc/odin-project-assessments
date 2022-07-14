@@ -17,3 +17,4 @@ This repository contains my solutions to the projects that were done following [
 - Rock Paper Scissors [View Code](https://github.com/maximbaraliuc/odin-project-assessments/tree/main/js-rock-paper-scissors) [**Live Preview**](https://maximbaraliuc.github.io/odin-project-assessments/js-rock-paper-scissors/index.html)
 - Etch A Sketch [View Code](https://github.com/maximbaraliuc/odin-project-assessments/tree/main/js-etch-a-sketch) [**Live Preview**](https://maximbaraliuc.github.io/odin-project-assessments/js-etch-a-sketch/index.html)
 - Calculator [View Code](https://github.com/maximbaraliuc/odin-project-assessments/tree/main/js-calculator) [**Live Preview**](https://maximbaraliuc.github.io/odin-project-assessments/js-calculator/index.html)
+- Calculator [View Code](https://github.com/maximbaraliuc/odin-project-assessments/tree/main/js-library) [**Live Preview**](https://maximbaraliuc.github.io/odin-project-assessments/js-library/index.html)
