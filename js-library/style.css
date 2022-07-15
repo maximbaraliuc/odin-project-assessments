@@ -57,12 +57,10 @@ header {
   align-items: center;
   max-width: var(--width-main);
   margin-inline: auto;
-
   font-weight: 700;
 }
 header #title {
   /* font-family: "Libre Baskerville", serif; */
-
   font-size: 2.5rem;
   margin-inline: 1rem auto;
 }
@@ -338,14 +336,15 @@ form div.form-btn-container {
 @media (max-width: 35rem) {
   .header-container {
     justify-content: end;
-    margin-bottom: 0rem;
   }
   .header-container button {
     flex-grow: 1;
     margin-top: 1rem;
     margin-inline: auto;
+    min-width: 200px;
   }
   .statistics {
+    margin-top: 1rem;
     margin-inline: 1rem;
   }
   .shelf {
