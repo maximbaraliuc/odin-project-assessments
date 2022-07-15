@@ -56,9 +56,6 @@ function createCard(book) {
   cardPages.classList.add("card-pages");
   const cardDelete = deleteBtn();
   const cardRead = readBtn(book.isRead);
-  console.log("======================================");
-  console.log(book.isRead);
-  console.log(cardRead);
 
   if (book.isRead) {
     cardBook.classList.add("read");
@@ -71,22 +68,18 @@ function createCard(book) {
   //  Create the card
   cardBook.append(cardTitle, cardAuthor, cardPages, cardBtnContainer);
   shelf.append(cardBook);
-
-  // console.log(cardBook);
-  // console.log(shelf);
 }
 
 function addBook() {
   // Create the book object first
   // Remove whitespace if any.
-  let title = document.querySelector("#book-title").value.replace(/^\s+|\s+$/gm, "");
+  let title = document.querySelector("#book-title").value;
+  title = title.replace(/\s+/g, " ").trim();
   let author = document.querySelector("#book-author").value;
   let pages = document.querySelector("#book-pages").value;
   let isRead = document.querySelector("#book-read").checked;
   let newBook = new Book(title, author, pages, isRead);
 
-  console.log("add book object");
-  console.log(isRead);
   // Update the library lists and the DOM
   myLibrary.push(newBook);
   localStorage.setItem("libraryBooks", JSON.stringify(myLibrary));
@@ -147,7 +140,7 @@ function readCard() {
     this.innerText = "read";
     this.parentNode.parentNode.classList.add("read");
   }
-  console.log(this.parentNode.parentNode);
+
   //  Find the index for myLibrary when the titles are matching.
   // And change and push the read status
   //  TODO Add more verifications (author, isbn, ...)
@@ -163,7 +156,6 @@ function readCard() {
 
   //  Update the DOM, local list and storage
   localStorage.setItem("libraryBooks", JSON.stringify(myLibrary));
-  console.log(myLibrary);
   readDisplay.innerText = `${updateRead()}`;
 }
 // ============================================================================
@@ -193,9 +185,6 @@ readDisplay.innerText = `${updateRead()}`;
 function updateRead() {
   let booksRead = 0;
   for (let book of myLibrary) {
-    console.log("updateread ==============");
-    console.log(book);
-    console.log(book.isRead);
     if (book.isRead) {
       booksRead += 1;
     }
@@ -214,4 +203,3 @@ const initialise = function () {
   form.addEventListener("submit", addBook);
 };
 document.addEventListener("DOMContentLoaded", initialise);
-console.log(myLibrary);
