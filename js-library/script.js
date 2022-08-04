@@ -103,7 +103,6 @@ function deleteCard() {
   let toDeleteIndex;
 
   //  Find the index for myLibrary when the titles are matching.
-  //  TODO Add more verifications (author, isbn, ...)
   for (let index = 0; index < myLibrary.length; index++) {
     if (this.parentNode.parentNode.childNodes[0].innerText === myLibrary[index].title) {
       toDeleteIndex = index;
@@ -143,7 +142,6 @@ function readCard() {
 
   //  Find the index for myLibrary when the titles are matching.
   // And change and push the read status
-  //  TODO Add more verifications (author, isbn, ...)
   for (let index = 0; index < myLibrary.length; index++) {
     if (this.parentNode.parentNode.childNodes[0].innerText === myLibrary[index].title) {
       if (this.classList.contains("read")) {
@@ -203,3 +201,9 @@ const initialise = function () {
   form.addEventListener("submit", addBook);
 };
 document.addEventListener("DOMContentLoaded", initialise);
+
+// TODO Add more and improve current classes
+// TODO Try to add an incremental index system to book class. This should help
+// combined with the data-attribute with deletion of the elements / cards.
+// As the index system is in place update the loop through te myLibrary with
+//  an O(log N) search type
