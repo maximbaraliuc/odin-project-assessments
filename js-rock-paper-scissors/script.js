@@ -69,8 +69,8 @@ function updateScoreboard(pHand, cHand, rndResult) {
 
   // Update the score board
   if (playerScore < 5 && compScore < 5) {
-    playerBoard.textContent = playerScore + rndResult[1];
-    computerBoard.textContent = compScore + rndResult[2];
+    playerBoard.textContent = playerScore += rndResult[1];
+    computerBoard.textContent = compScore += rndResult[2];
     playerBoardImg.src = `images/svg/${pHand}.svg`;
     compBoardImg.src = `images/svg/${cHand}.svg`;
     roundFeedback.textContent = `${rndResult[0]}`;
