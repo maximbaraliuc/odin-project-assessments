@@ -83,7 +83,7 @@ function updateScoreboard(pHand, cHand, rndResult) {
     if (playerBoard.textContent === computerBoard.textContent) {
       endScore.textContent = "DRAW";
     } else if (playerBoard.textContent < computerBoard.textContent) {
-      endScore.textContent = "Computer Wins! \n";
+      endScore.textContent = "COMPUTER WINS!";
     } else {
       endScore.textContent = "PLAYER WINS!";
     }
